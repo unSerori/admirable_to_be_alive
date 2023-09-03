@@ -6,6 +6,7 @@ class Constant {
   static const Color sub1 = Color(0xFFFF9F9F);
   static const Color sub2 = Color(0xFFD7FF37);
   static const Color sub3 = Color(0xFFFFDC61);
+  static const Color glay = Color(0xFFD9D9D9);
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF3E3E3E);
 }
