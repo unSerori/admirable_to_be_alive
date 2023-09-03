@@ -31,7 +31,7 @@ class _PageHomeState extends State<PageHome>{
               Row(
                 children: [
 
-                  ///好感度ランクの表示
+                  ////好感度ランクの表示
                   Container(
                     // child Widgetの位置を中央に指定
                     alignment: const Alignment(0.0, 0.0),
