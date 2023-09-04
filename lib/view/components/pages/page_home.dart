@@ -37,16 +37,22 @@ class _PageHomeState extends State<PageHome> {
           //ページの中身
           child: Container(
         width: double.infinity,
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.only(top: 30, right: 20, bottom: 20, left: 20),
         decoration: const BoxDecoration(color: Constant.white),
         child: Column(
           children: [
+            SizedBox(
+              height: _screenSizeWidth * 0.1,
+            ),
+
             Container(
                 width: _screenSizeWidth,
                 height: _screenSizeWidth * 0.18,
                 child: Row(
                   children: [
+
                     //好感度ランクの表示
+                    
                     Container(
                       // child Widgetの位置を中央に指定
                       alignment: const Alignment(0.0, 0.0),
@@ -78,7 +84,7 @@ class _PageHomeState extends State<PageHome> {
                         Row(
                           children: [
                             //えらいいね
-                            Container(
+                            SizedBox(
                               width: _screenSizeWidth * 0.09,
                               height: _screenSizeWidth * 0.09,
                               child: Image.asset(
@@ -86,7 +92,7 @@ class _PageHomeState extends State<PageHome> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: _screenSizeWidth * 0.09,
                               child: CustomText(
                                   color: Constant.black,
@@ -97,7 +103,7 @@ class _PageHomeState extends State<PageHome> {
                             //Spacer(),
 
                             //すごいいね
-                            Container(
+                            SizedBox(
                               width: _screenSizeWidth * 0.09,
                               height: _screenSizeWidth * 0.09,
                               child: Image.asset(
@@ -105,7 +111,7 @@ class _PageHomeState extends State<PageHome> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: _screenSizeWidth * 0.09,
                               child: CustomText(
                                   color: Constant.black,
@@ -122,7 +128,7 @@ class _PageHomeState extends State<PageHome> {
                         icon: const Icon(
                           Icons.settings,
                           color: Constant.glay,
-                          size: 40,
+                          size: 50,
                         ),
                         onPressed: () {
                           // //ページ遷移
@@ -158,8 +164,8 @@ class _PageHomeState extends State<PageHome> {
                         ),
                       ),
 
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: _screenSizeWidth * 0.06,
                       ),
 
                       //カレンダー
@@ -174,8 +180,8 @@ class _PageHomeState extends State<PageHome> {
                         ),
                       ),
 
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: _screenSizeWidth * 0.06,
                       ),
 
                       //にくきゅうアイコン
@@ -192,10 +198,9 @@ class _PageHomeState extends State<PageHome> {
                     ],
                   ),
 
-                  const SizedBox(
-                    width: 60,
+                  SizedBox(
+                    width: _screenSizeWidth * 0.15,
                   ),
-                
                 
                   Column(
                     children:[
@@ -222,25 +227,28 @@ class _PageHomeState extends State<PageHome> {
               ),
             ),
 
-            const SizedBox(
-              width: 60,
-              height: 60,
+            SizedBox(
+              width: _screenSizeWidth * 0.1,
+              height: _screenSizeWidth * 0.05,
             ),
 
             //ニャリオット
-            Container(
-              width: _screenSizeWidth * 0.9,
-              height: _screenSizeWidth * 0.9,
+            SizedBox(
+              height: _screenSizeWidth * 0.8,
               child: Image.asset(
                 'images/cat.png',
                 fit: BoxFit.cover,
               ),
             ),
 
-            const SizedBox(
-              width: 60,
-              height: 30,
+            SizedBox(
+              width: _screenSizeWidth * 0.1,
+              height: _screenSizeWidth * 0.05,
             ),
+
+            
+            
+              
 
             //せりふ部分
             Container(
@@ -251,10 +259,23 @@ class _PageHomeState extends State<PageHome> {
                 color: Constant.main,
                 borderRadius: BorderRadius.circular(10), //角丸
               ),
-              child: CustomText(
+              child:Container(
+                alignment: const Alignment(0.0, 0.0),
+                width: _screenSizeWidth * 0.75,
+                height:  _screenSizeWidth * 0.2,
+                decoration: BoxDecoration(
+                  color: Constant.main,
+                  borderRadius: BorderRadius.circular(10), //角丸
+                  border: Border.all(
+                    color: Constant.white,
+                    width: 5,
+                  ),
+                ),
+                child: CustomText(
                   text: word,
                   fontSize: _screenSizeWidth * 0.04,
                   color: Constant.white),
+              )
             )
           ],
         ),

@@ -35,3 +35,33 @@ class CustomText extends StatelessWidget {
     );
   }
 }
+
+//枠線付きボックス
+class MainBox {
+  static Widget _MainBox(Widget widget, double width, double height,
+      {Color bordColor = Constant.main}) {
+    return Container(
+      width: width,
+      height: height,
+      alignment: const Alignment(0.0, 0.0), //文字を真ん中にする
+      decoration: BoxDecoration(
+        color: bordColor,
+        borderRadius: BorderRadius.circular(10), //角丸
+      ),
+      child: Container(
+        alignment: const Alignment(0.0, 0.0),
+          width: width-0.5,
+          height: height-0.5,
+          decoration: BoxDecoration(
+            color: bordColor,
+            borderRadius: BorderRadius.circular(10), //角丸
+            border: Border.all(
+              color: Constant.white,
+              width: 5,
+            ),
+          ),
+          child: widget
+        )
+    );
+  }
+}
