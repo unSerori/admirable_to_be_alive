@@ -36,6 +36,7 @@ class CustomText extends StatelessWidget {
   }
 }
 
+//枠線付きボックス
 class MainBox {
   static Widget _MainBox(Widget widget, double width, double height,
       {Color bordColor = Constant.main}) {
@@ -47,7 +48,20 @@ class MainBox {
         color: bordColor,
         borderRadius: BorderRadius.circular(10), //角丸
       ),
-      child: widget,
+      child: Container(
+        alignment: const Alignment(0.0, 0.0),
+          width: width-0.5,
+          height: height-0.5,
+          decoration: BoxDecoration(
+            color: bordColor,
+            borderRadius: BorderRadius.circular(10), //角丸
+            border: Border.all(
+              color: Constant.white,
+              width: 5,
+            ),
+          ),
+          child: widget
+        )
     );
   }
 }
