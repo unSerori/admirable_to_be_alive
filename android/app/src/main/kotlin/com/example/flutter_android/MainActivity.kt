@@ -1,4 +1,4 @@
-package com.example.admirable_to_be_alive_
+package com.example.flutter_android
 
 import io.flutter.embedding.android.FlutterActivity
 

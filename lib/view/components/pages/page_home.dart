@@ -11,13 +11,13 @@ class PageHome extends StatefulWidget {
 
 class _PageHomeState extends State<PageHome> {
   //ユーザー名
-  static String name = 'うんちる';
+  static String name = 'おさかな';
   //好感度ランク
   static int rank = 0;
 
   //えらいいねとすごいいね
-  static int erai = 0;
-  static int good = 0;
+  static int erai = 10;
+  static int good = 80;
 
   //次の予定
   static int nextToDoh = 13;
@@ -31,42 +31,36 @@ class _PageHomeState extends State<PageHome> {
   Widget build(BuildContext context) {
     //画面サイズ
     var _screenSizeWidth = MediaQuery.of(context).size.width;
+    var _screenSizeHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: Center(
           //ページの中身
-          child: Container(
+        child: Container(
         width: double.infinity,
-        padding: EdgeInsets.only(top: 30, right: 20, bottom: 20, left: 20),
+        padding: EdgeInsets.only(top: 10, right: 10, bottom: 10, left: 10),
         decoration: const BoxDecoration(color: Constant.white),
         child: Column(
           children: [
-            SizedBox(
-              height: _screenSizeWidth * 0.1,
-            ),
 
             Container(
                 width: _screenSizeWidth,
-                height: _screenSizeWidth * 0.18,
+                height: _screenSizeHeight * 0.1,
                 child: Row(
                   children: [
-
                     //好感度ランクの表示
-                    
-                    Container(
-                      // child Widgetの位置を中央に指定
-                      alignment: const Alignment(0.0, 0.0),
-                      width: _screenSizeWidth * 0.18,
-                      height: _screenSizeWidth * 0.18,
-                      decoration: BoxDecoration(
-                        color: Constant.main,
-                        borderRadius: BorderRadius.circular(10), //角丸
-                      ),
-                      child: CustomText(
-                        color: Constant.white,
-                        text: rank.toString(),
-                        fontSize: _screenSizeWidth * 0.10,
-                      ),
+                    MainBox.MainBox2(
+                        CustomText(
+                            text: rank.toString(),
+                            fontSize: _screenSizeWidth * 0.08,
+                            color: Constant.white),
+                        _screenSizeWidth.toDouble(),
+                        _screenSizeWidth.toDouble(),
+                        0.18,
+                        0.18),
+
+                    SizedBox(
+                      width: _screenSizeWidth * 0.07,
                     ),
 
                     //名前とポイント部分
@@ -75,6 +69,14 @@ class _PageHomeState extends State<PageHome> {
                         Container(
                           alignment: const Alignment(0.0, 0.0),
                           width: _screenSizeWidth * 0.5,
+                          padding:
+                              EdgeInsets.only(bottom: _screenSizeWidth * 0.01),
+                          decoration: const BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                            color: Constant.glay,
+                            width: 3,
+                          ))),
                           child: CustomText(
                             color: Constant.black,
                             text: name,
@@ -84,35 +86,41 @@ class _PageHomeState extends State<PageHome> {
                         Row(
                           children: [
                             //えらいいね
-                            SizedBox(
+                            Container(
                               width: _screenSizeWidth * 0.09,
                               height: _screenSizeWidth * 0.09,
+                              padding:
+                                  EdgeInsets.only(top: _screenSizeWidth * 0.01),
                               child: Image.asset(
                                 'images/gezi.png',
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            SizedBox(
-                              width: _screenSizeWidth * 0.09,
+                            Container(
+                              width: _screenSizeWidth * 0.15,
+                              padding:
+                                  EdgeInsets.only(top: _screenSizeWidth * 0.01),
                               child: CustomText(
                                   color: Constant.black,
                                   text: '$erai P',
                                   fontSize: _screenSizeWidth * 0.05),
                             ),
 
-                            //Spacer(),
-
                             //すごいいね
-                            SizedBox(
+                            Container(
                               width: _screenSizeWidth * 0.09,
-                              height: _screenSizeWidth * 0.09,
+                              height: _screenSizeWidth * 0.1,
+                              padding:
+                                  EdgeInsets.only(top: _screenSizeWidth * 0.01),
                               child: Image.asset(
                                 'images/usagi.png',
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            SizedBox(
-                              width: _screenSizeWidth * 0.09,
+                            Container(
+                              width: _screenSizeWidth * 0.15,
+                              padding:
+                                  EdgeInsets.only(top: _screenSizeWidth * 0.01),
                               child: CustomText(
                                   color: Constant.black,
                                   text: '$good P',
@@ -158,14 +166,14 @@ class _PageHomeState extends State<PageHome> {
                           icon: const Icon(
                             Icons.auto_awesome,
                             color: Constant.sub3,
-                            size: 60,
+                            size: 50,
                           ),
                           onPressed: () {},
                         ),
                       ),
 
                       SizedBox(
-                        height: _screenSizeWidth * 0.06,
+                        height: _screenSizeHeight * 0.03,
                       ),
 
                       //カレンダー
@@ -174,14 +182,14 @@ class _PageHomeState extends State<PageHome> {
                           icon: const Icon(
                             Icons.event,
                             color: Constant.sub2,
-                            size: 60,
+                            size: 50,
                           ),
                           onPressed: () {},
                         ),
                       ),
 
                       SizedBox(
-                        height: _screenSizeWidth * 0.06,
+                        height: _screenSizeHeight * 0.03,
                       ),
 
                       //にくきゅうアイコン
@@ -190,46 +198,35 @@ class _PageHomeState extends State<PageHome> {
                           icon: const Icon(
                             Icons.pets,
                             color: Constant.sub1,
-                            size: 60,
+                            size: 50,
                           ),
                           onPressed: () {},
                         ),
                       ),
                     ],
                   ),
-
                   SizedBox(
                     width: _screenSizeWidth * 0.15,
                   ),
-                
-                  Column(
-                    children:[
-                      const SizedBox(
-                        height: 30,
-                      ),
+                  Column(children: [
+                    const SizedBox(
+                      height: 30,
+                    ),
+
                     //次の予定
-                      Container(
-                        alignment: const Alignment(0.0, 0.0),
-                        width: _screenSizeWidth * 0.6,
-                        height: _screenSizeWidth * 0.25,
-                        decoration: BoxDecoration(
-                          color: Constant.main,
-                          borderRadius: BorderRadius.circular(10), //角丸
-                        ),
-                        child: CustomText(
+                    MainBox.MainBox2(
+                        CustomText(
                             text: '$nextToDoh:$nextToDom\n $nextToDo',
                             fontSize: _screenSizeWidth * 0.04,
                             color: Constant.white),
-                      )
-                    ]
-                  )
+                        _screenSizeWidth.toDouble(),
+                        _screenSizeHeight.toDouble(),
+                        0.6,
+                        0.2), 
+                    
+                  ])
                 ],
               ),
-            ),
-
-            SizedBox(
-              width: _screenSizeWidth * 0.1,
-              height: _screenSizeWidth * 0.05,
             ),
 
             //ニャリオット
@@ -243,40 +240,19 @@ class _PageHomeState extends State<PageHome> {
 
             SizedBox(
               width: _screenSizeWidth * 0.1,
-              height: _screenSizeWidth * 0.05,
+              height: _screenSizeWidth * 0.03,
             ),
 
-            
-            
-              
-
-            //せりふ部分
-            Container(
-              alignment: const Alignment(0.0, 0.0),
-              width: _screenSizeWidth * 0.8,
-              height: _screenSizeWidth * 0.25,
-              decoration: BoxDecoration(
-                color: Constant.main,
-                borderRadius: BorderRadius.circular(10), //角丸
-              ),
-              child:Container(
-                alignment: const Alignment(0.0, 0.0),
-                width: _screenSizeWidth * 0.75,
-                height:  _screenSizeWidth * 0.2,
-                decoration: BoxDecoration(
-                  color: Constant.main,
-                  borderRadius: BorderRadius.circular(10), //角丸
-                  border: Border.all(
-                    color: Constant.white,
-                    width: 5,
-                  ),
-                ),
-                child: CustomText(
-                  text: word,
-                  fontSize: _screenSizeWidth * 0.04,
-                  color: Constant.white),
-              )
-            )
+          //せりふ部分
+          MainBox.MainBox2(
+            CustomText(
+              text: word,
+              fontSize: _screenSizeWidth * 0.04,
+              color: Constant.white),
+            _screenSizeWidth.toDouble(),
+            _screenSizeHeight.toDouble(),
+            0.8,
+            0.2), 
           ],
         ),
       )),

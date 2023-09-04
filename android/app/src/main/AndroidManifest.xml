@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="admirable_to_be_alive_"
+        android:label="flutter_android"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
