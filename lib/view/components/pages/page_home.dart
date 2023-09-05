@@ -56,25 +56,25 @@ class _PageHomeState extends State<PageHome> {
                         color: Constant.main,
                         borderRadius: BorderRadius.circular(10), //角丸
                       ),
-                      child:Container(
+                      child: Container(
                         alignment: const Alignment(0.0, 0.0),
-                            width: _screenSizeWidth * 0.15,
-                            height: _screenSizeWidth * 0.15,
-                            decoration: BoxDecoration(
-                              color: Constant.main,
-                              borderRadius: BorderRadius.circular(10), //角丸
-                              border: Border.all(
-                                color: Constant.white,
-                                width: 2,
-                              ),
-                            ),
-                            child: CustomText(
-                              text: rank.toString(),
-                              fontSize: _screenSizeHeight * 0.05,
-                              color: Constant.white,
-                            ),
+                        width: _screenSizeWidth * 0.15,
+                        height: _screenSizeWidth * 0.15,
+                        decoration: BoxDecoration(
+                          color: Constant.main,
+                          borderRadius: BorderRadius.circular(10), //角丸
+                          border: Border.all(
+                            color: Constant.white,
+                            width: 2,
+                          ),
+                        ),
+                        child: CustomText(
+                          text: rank.toString(),
+                          fontSize: _screenSizeHeight * 0.05,
+                          color: Constant.white,
                         ),
                       ),
+                    ),
 
                     SizedBox(
                       width: _screenSizeWidth * 0.07,
@@ -172,67 +172,66 @@ class _PageHomeState extends State<PageHome> {
                 )),
 
             //二段目
-            Stack(  //重ねて表示
-              children: <Widget>[  
-                Row(
-                  children: [
-                    SizedBox(
+            Stack(//重ねて表示
+                children: <Widget>[
+              Row(
+                children: [
+                  SizedBox(
                     width: _screenSizeWidth * 0.01,
                   ),
-                    Column(
-                      children:<Widget>[
-                        //デイリーミッション
-                        SizedBox(
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.auto_awesome,
-                              color: Constant.sub3,
-                              size: 55,
-                            ),
-                            onPressed: () {},
+                  Column(
+                    children: <Widget>[
+                      //デイリーミッション
+                      SizedBox(
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.auto_awesome,
+                            color: Constant.sub3,
+                            size: 55,
                           ),
+                          onPressed: () {},
                         ),
+                      ),
 
-                        SizedBox(
-                          height: _screenSizeHeight * 0.03,
-                        ),
+                      SizedBox(
+                        height: _screenSizeHeight * 0.03,
+                      ),
 
-                        //カレンダー
-                        SizedBox(
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.event,
-                              color: Constant.sub2,
-                              size: 55,
-                            ),
-                            onPressed: () {},
+                      //カレンダー
+                      SizedBox(
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.event,
+                            color: Constant.sub2,
+                            size: 55,
                           ),
+                          onPressed: () {},
                         ),
+                      ),
 
-                        SizedBox(
-                          height: _screenSizeHeight * 0.03,
-                        ),
+                      SizedBox(
+                        height: _screenSizeHeight * 0.03,
+                      ),
 
-                        //にくきゅうアイコン
-                        SizedBox(
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.pets,
-                              color: Constant.sub1,
-                              size: 55,
-                            ),
-                            onPressed: () {},
+                      //にくきゅうアイコン
+                      SizedBox(
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.pets,
+                            color: Constant.sub1,
+                            size: 55,
                           ),
+                          onPressed: () {},
                         ),
-                      ],
-                    ),
-
-                    SizedBox(
-                      width: _screenSizeWidth * 0.15,
-                    ),
-                    Column(children: [
-                      //次の予定
-                      MainBox.MainBox2(
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    width: _screenSizeWidth * 0.15,
+                  ),
+                  Column(children: [
+                    //次の予定
+                    MainBox.MainBox2(
                         CustomText(
                             text: '$nextToDoh:$nextToDom\n $nextToDo',
                             fontSize: _screenSizeWidth * 0.04,
@@ -240,54 +239,52 @@ class _PageHomeState extends State<PageHome> {
                         _screenSizeWidth.toDouble(),
                         _screenSizeHeight.toDouble(),
                         0.6,
-                        0.15),                         
-                    ])
-                  ],
-                ),
-
+                        0.15),
+                  ])
+                ],
+              ),
               Column(
                 //ニャリオット
-                children:[
+                children: [
                   //縦調整
                   SizedBox(
-                    height: _screenSizeHeight*0.2,
+                    height: _screenSizeHeight * 0.2,
                   ),
                   Row(
-                    children:[
+                    children: [
                       //横調整
                       SizedBox(
-                        width: _screenSizeWidth*0.05,
-                      ), 
+                        width: _screenSizeWidth * 0.05,
+                      ),
                       //画像
                       SizedBox(
                         height: _screenSizeWidth * 0.8,
-                          child: Image.asset(
-                            'images/cat.png',
-                            fit: BoxFit.cover,
-                          ),
+                        child: Image.asset(
+                          'images/cat.png',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ],
                   )
-                ], 
-              ) 
-            ]
-          ),
+                ],
+              )
+            ]),
 
-          SizedBox(
-            width: _screenSizeWidth * 0.1,
-            height: _screenSizeWidth * 0.03,
-          ),
+            SizedBox(
+              width: _screenSizeWidth * 0.1,
+              height: _screenSizeWidth * 0.03,
+            ),
 
-          //せりふ部分
-          MainBox.MainBox2(
-            CustomText(
-              text: word,
-              fontSize: _screenSizeWidth * 0.04,
-              color: Constant.white),
-            _screenSizeWidth.toDouble(),
-            _screenSizeHeight.toDouble(),
-            0.8,
-            0.16), 
+            //せりふ部分
+            MainBox.MainBox2(
+                CustomText(
+                    text: word,
+                    fontSize: _screenSizeWidth * 0.04,
+                    color: Constant.white),
+                _screenSizeWidth.toDouble(),
+                _screenSizeHeight.toDouble(),
+                0.8,
+                0.16),
           ],
         ),
       )),

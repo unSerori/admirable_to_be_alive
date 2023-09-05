@@ -36,36 +36,33 @@ class CustomText extends StatelessWidget {
   }
 }
 
-
-
 //枠線付きボックス
 class MainBox {
-  static Widget MainBox2(Widget widget, double scleenwidth ,double scleenheight,double width, double height,
+  static Widget MainBox2(Widget widget, double scleenwidth, double scleenheight,
+      double width, double height,
       {Color bordColor = Constant.main}) {
+    //外側の箱
     return Container(
-      width: scleenwidth * width,
-      height: scleenheight * height,
-      alignment: const Alignment(0.0, 0.0), //文字を真ん中にする
-      decoration: BoxDecoration(
-        color: bordColor,
-        borderRadius: BorderRadius.circular(10), //角丸
-      ),
-      child: Container(
-        alignment: const Alignment(0.0, 0.0),
-          width: scleenwidth * (width -0.05),
-          height: scleenheight * (height -0.025),
-          decoration: BoxDecoration(
-            color: bordColor,
-            borderRadius: BorderRadius.circular(10), //角丸
-            border: Border.all(
-              color: Constant.white,
-              width: 2,
+        width: scleenwidth * width,
+        height: scleenheight * height,
+        alignment: const Alignment(0.0, 0.0), //文字を真ん中にする
+        decoration: BoxDecoration(
+          color: bordColor,
+          borderRadius: BorderRadius.circular(10), //角丸
+        ),
+        //中身の箱
+        child: Container(
+            alignment: const Alignment(0.0, 0.0),
+            width: scleenwidth * (width - 0.05),
+            height: scleenheight * (height - 0.025),
+            decoration: BoxDecoration(
+              color: bordColor,
+              borderRadius: BorderRadius.circular(10), //角丸
+              border: Border.all(
+                color: Constant.white,
+                width: 2,
+              ),
             ),
-          ),
-          child: widget
-        )
-    );
+            child: widget));
   }
 }
-
-

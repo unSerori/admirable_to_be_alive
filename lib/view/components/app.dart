@@ -22,32 +22,6 @@ class MyStatefulWidget extends StatefulWidget {
   State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
 }
 
-class Componentsless {
-  static Widget main_box(Widget widget, double _screenSizeWidth,
-      {double widthRatio = 0.8,
-      double widthRasio = 0.8,
-      double paddingHor = 10,
-      double paddingVer = 25,
-      Color borderColor = Colors.white}) {
-    return Container(
-      width: _screenSizeWidth * widthRatio,
-      padding:
-          EdgeInsets.symmetric(horizontal: paddingHor, vertical: paddingVer),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: borderColor,
-          width: 5,
-        ),
-        color: Constant.main,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: widget,
-    );
-  }
-}
-
-
-
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
