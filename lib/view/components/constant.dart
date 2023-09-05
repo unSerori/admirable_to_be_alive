@@ -53,7 +53,7 @@ class MainBox {
       child: Container(
         alignment: const Alignment(0.0, 0.0),
           width: scleenwidth * (width -0.05),
-          height: scleenheight * (height -0.05),
+          height: scleenheight * (height -0.025),
           decoration: BoxDecoration(
             color: bordColor,
             borderRadius: BorderRadius.circular(10), //角丸

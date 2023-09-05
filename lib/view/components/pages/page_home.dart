@@ -42,22 +42,39 @@ class _PageHomeState extends State<PageHome> {
         decoration: const BoxDecoration(color: Constant.white),
         child: Column(
           children: [
-
-            Container(
+            SizedBox(
                 width: _screenSizeWidth,
                 height: _screenSizeHeight * 0.1,
                 child: Row(
                   children: [
-                    //好感度ランクの表示
-                    MainBox.MainBox2(
-                        CustomText(
-                            text: rank.toString(),
-                            fontSize: _screenSizeWidth * 0.08,
-                            color: Constant.white),
-                        _screenSizeWidth.toDouble(),
-                        _screenSizeWidth.toDouble(),
-                        0.18,
-                        0.18),
+                    //好感度ランクの表示 正方形なのでmainbox使うと比率が面倒で個別に対応中
+                    Container(
+                      width: _screenSizeWidth * 0.18,
+                      height: _screenSizeWidth * 0.18,
+                      alignment: const Alignment(0.0, 0.0), //文字を真ん中にする
+                      decoration: BoxDecoration(
+                        color: Constant.main,
+                        borderRadius: BorderRadius.circular(10), //角丸
+                      ),
+                      child:Container(
+                        alignment: const Alignment(0.0, 0.0),
+                            width: _screenSizeWidth * 0.15,
+                            height: _screenSizeWidth * 0.15,
+                            decoration: BoxDecoration(
+                              color: Constant.main,
+                              borderRadius: BorderRadius.circular(10), //角丸
+                              border: Border.all(
+                                color: Constant.white,
+                                width: 2,
+                              ),
+                            ),
+                            child: CustomText(
+                              text: rank.toString(),
+                              fontSize: _screenSizeHeight * 0.05,
+                              color: Constant.white,
+                            ),
+                        ),
+                      ),
 
                     SizedBox(
                       width: _screenSizeWidth * 0.07,
@@ -139,7 +156,7 @@ class _PageHomeState extends State<PageHome> {
                           size: 50,
                         ),
                         onPressed: () {
-                          // //ページ遷移
+                          // //ページ遷移のかきかた
                           // Navigator.push(
                           //   context,
                           //   MaterialPageRoute(
@@ -155,66 +172,67 @@ class _PageHomeState extends State<PageHome> {
                 )),
 
             //二段目
-            Container(
-              child: Row(
-                children: [
-                  Column(
-                    children: [
-                      //デイリーミッション
-                      SizedBox(
-                        child: IconButton(
-                          icon: const Icon(
-                            Icons.auto_awesome,
-                            color: Constant.sub3,
-                            size: 50,
-                          ),
-                          onPressed: () {},
-                        ),
-                      ),
-
-                      SizedBox(
-                        height: _screenSizeHeight * 0.03,
-                      ),
-
-                      //カレンダー
-                      SizedBox(
-                        child: IconButton(
-                          icon: const Icon(
-                            Icons.event,
-                            color: Constant.sub2,
-                            size: 50,
-                          ),
-                          onPressed: () {},
-                        ),
-                      ),
-
-                      SizedBox(
-                        height: _screenSizeHeight * 0.03,
-                      ),
-
-                      //にくきゅうアイコン
-                      SizedBox(
-                        child: IconButton(
-                          icon: const Icon(
-                            Icons.pets,
-                            color: Constant.sub1,
-                            size: 50,
-                          ),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ],
+            Stack(  //重ねて表示
+              children: <Widget>[  
+                Row(
+                  children: [
+                    SizedBox(
+                    width: _screenSizeWidth * 0.01,
                   ),
-                  SizedBox(
-                    width: _screenSizeWidth * 0.15,
-                  ),
-                  Column(children: [
-                    const SizedBox(
-                      height: 30,
+                    Column(
+                      children:<Widget>[
+                        //デイリーミッション
+                        SizedBox(
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.auto_awesome,
+                              color: Constant.sub3,
+                              size: 55,
+                            ),
+                            onPressed: () {},
+                          ),
+                        ),
+
+                        SizedBox(
+                          height: _screenSizeHeight * 0.03,
+                        ),
+
+                        //カレンダー
+                        SizedBox(
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.event,
+                              color: Constant.sub2,
+                              size: 55,
+                            ),
+                            onPressed: () {},
+                          ),
+                        ),
+
+                        SizedBox(
+                          height: _screenSizeHeight * 0.03,
+                        ),
+
+                        //にくきゅうアイコン
+                        SizedBox(
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.pets,
+                              color: Constant.sub1,
+                              size: 55,
+                            ),
+                            onPressed: () {},
+                          ),
+                        ),
+                      ],
                     ),
 
-                    //次の予定
-                    MainBox.MainBox2(
+                    SizedBox(
+                      width: _screenSizeWidth * 0.15,
+                    ),
+                    Column(children: [
+                      //次の予定
+                      MainBox.MainBox2(
                         CustomText(
                             text: '$nextToDoh:$nextToDom\n $nextToDo',
                             fontSize: _screenSizeWidth * 0.04,
@@ -222,26 +240,43 @@ class _PageHomeState extends State<PageHome> {
                         _screenSizeWidth.toDouble(),
                         _screenSizeHeight.toDouble(),
                         0.6,
-                        0.2), 
-                    
-                  ])
-                ],
-              ),
-            ),
+                        0.15),                         
+                    ])
+                  ],
+                ),
 
-            //ニャリオット
-            SizedBox(
-              height: _screenSizeWidth * 0.8,
-              child: Image.asset(
-                'images/cat.png',
-                fit: BoxFit.cover,
-              ),
-            ),
+              Column(
+                //ニャリオット
+                children:[
+                  //縦調整
+                  SizedBox(
+                    height: _screenSizeHeight*0.2,
+                  ),
+                  Row(
+                    children:[
+                      //横調整
+                      SizedBox(
+                        width: _screenSizeWidth*0.05,
+                      ), 
+                      //画像
+                      SizedBox(
+                        height: _screenSizeWidth * 0.8,
+                          child: Image.asset(
+                            'images/cat.png',
+                            fit: BoxFit.cover,
+                          ),
+                      ),
+                    ],
+                  )
+                ], 
+              ) 
+            ]
+          ),
 
-            SizedBox(
-              width: _screenSizeWidth * 0.1,
-              height: _screenSizeWidth * 0.03,
-            ),
+          SizedBox(
+            width: _screenSizeWidth * 0.1,
+            height: _screenSizeWidth * 0.03,
+          ),
 
           //せりふ部分
           MainBox.MainBox2(
@@ -252,7 +287,7 @@ class _PageHomeState extends State<PageHome> {
             _screenSizeWidth.toDouble(),
             _screenSizeHeight.toDouble(),
             0.8,
-            0.2), 
+            0.16), 
           ],
         ),
       )),
