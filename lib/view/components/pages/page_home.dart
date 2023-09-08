@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constant.dart';
+import 'page_shop.dart';
 // import '../app.dart';
 
 class PageHome extends StatefulWidget {
@@ -36,7 +37,7 @@ class _PageHomeState extends State<PageHome> {
     return Scaffold(
       body: Center(
           //ページの中身
-        child: Container(
+          child: Container(
         width: double.infinity,
         padding: EdgeInsets.only(top: 10, right: 10, bottom: 10, left: 10),
         decoration: const BoxDecoration(color: Constant.white),
@@ -221,7 +222,17 @@ class _PageHomeState extends State<PageHome> {
                             color: Constant.sub1,
                             size: 55,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            //ページ遷移のかきかた
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PageShop()),
+                            ).then((value) {
+                              //戻ってきたら再描画
+                              setState(() {});
+                            });
+                          },
                         ),
                       ),
                     ],
@@ -291,3 +302,5 @@ class _PageHomeState extends State<PageHome> {
     );
   }
 }
+
+
