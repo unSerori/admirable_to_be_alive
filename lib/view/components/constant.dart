@@ -27,6 +27,9 @@ class CustomText extends StatelessWidget {
     return Text(
       text,
       textAlign: TextAlign.center,
+      softWrap: true, // 自動改行
+      overflow: TextOverflow.ellipsis, // テキストが領域からはみ出た場合の動作を指定
+      maxLines: 2, // 改行後の最大行数
       style: GoogleFonts.kosugiMaru(
         fontWeight: FontWeight.bold,
         fontSize: fontSize,

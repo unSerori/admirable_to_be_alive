@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import '../constant.dart';
+import '../items.dart';
 import 'page_shop.dart';
+
+import 'page_daily.dart';
+import 'page_setting.dart';
 // import '../app.dart';
 
 class PageHome extends StatefulWidget {
@@ -16,10 +20,7 @@ class _PageHomeState extends State<PageHome> {
   //好感度ランク
   static int rank = 0;
 
-  //えらいいねとすごいいね
-  static int erai = 10;
-  static int good = 80;
-
+  
   //次の予定
   static int nextToDoh = 13;
   static int nextToDom = 30;
@@ -87,8 +88,7 @@ class _PageHomeState extends State<PageHome> {
                         Container(
                           alignment: const Alignment(0.0, 0.0),
                           width: _screenSizeWidth * 0.5,
-                          padding:
-                              EdgeInsets.only(bottom: _screenSizeWidth * 0.01),
+                          padding: EdgeInsets.only(bottom: _screenSizeWidth * 0.01),
                           decoration: const BoxDecoration(
                               border: Border(
                                   bottom: BorderSide(
@@ -107,8 +107,7 @@ class _PageHomeState extends State<PageHome> {
                             Container(
                               width: _screenSizeWidth * 0.09,
                               height: _screenSizeWidth * 0.09,
-                              padding:
-                                  EdgeInsets.only(top: _screenSizeWidth * 0.01),
+                              padding: EdgeInsets.only(top: _screenSizeWidth * 0.01),
                               child: Image.asset(
                                 'images/gezi.png',
                                 fit: BoxFit.cover,
@@ -116,20 +115,16 @@ class _PageHomeState extends State<PageHome> {
                             ),
                             Container(
                               width: _screenSizeWidth * 0.15,
-                              padding:
-                                  EdgeInsets.only(top: _screenSizeWidth * 0.01),
-                              child: CustomText(
-                                  color: Constant.black,
-                                  text: '$erai P',
-                                  fontSize: _screenSizeWidth * 0.05),
+                              padding: EdgeInsets.only(top: _screenSizeWidth * 0.01),
+                              child:
+                                  CustomText(color: Constant.black, text: '${items.erai}P', fontSize: _screenSizeWidth * 0.05),
                             ),
 
                             //すごいいね
                             Container(
                               width: _screenSizeWidth * 0.09,
                               height: _screenSizeWidth * 0.1,
-                              padding:
-                                  EdgeInsets.only(top: _screenSizeWidth * 0.01),
+                              padding: EdgeInsets.only(top: _screenSizeWidth * 0.01),
                               child: Image.asset(
                                 'images/usagi.png',
                                 fit: BoxFit.cover,
@@ -137,12 +132,9 @@ class _PageHomeState extends State<PageHome> {
                             ),
                             Container(
                               width: _screenSizeWidth * 0.15,
-                              padding:
-                                  EdgeInsets.only(top: _screenSizeWidth * 0.01),
-                              child: CustomText(
-                                  color: Constant.black,
-                                  text: '$good P',
-                                  fontSize: _screenSizeWidth * 0.05),
+                              padding: EdgeInsets.only(top: _screenSizeWidth * 0.01),
+                              child:
+                                  CustomText(color: Constant.black, text: '${items.good}P', fontSize: _screenSizeWidth * 0.05),
                             ),
                           ],
                         )
@@ -157,15 +149,14 @@ class _PageHomeState extends State<PageHome> {
                           size: 50,
                         ),
                         onPressed: () {
-                          // //ページ遷移のかきかた
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) => const PageSetAlarm_2()),
-                          // ).then((value) {
-                          //   //戻ってきたら再描画
-                          //   setState(() {});
-                          // });
+                          //ページ遷移
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => PageSetting()),
+                          ).then((value) {
+                            //戻ってきたら再描画
+                            setState(() {});
+                          });
                         },
                       ),
                     ),
@@ -190,7 +181,16 @@ class _PageHomeState extends State<PageHome> {
                             color: Constant.sub3,
                             size: 55,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            //ページ遷移
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => PageDaily()),
+                            ).then((value) {
+                              //戻ってきたら再描画
+                              setState(() {});
+                            });
+                          },
                         ),
                       ),
 
@@ -223,11 +223,10 @@ class _PageHomeState extends State<PageHome> {
                             size: 55,
                           ),
                           onPressed: () {
-                            //ページ遷移のかきかた
+                            //ページ遷移
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => PageShop()),
+                              MaterialPageRoute(builder: (context) => PageShop()),
                             ).then((value) {
                               //戻ってきたら再描画
                               setState(() {});
@@ -287,20 +286,11 @@ class _PageHomeState extends State<PageHome> {
             ),
 
             //せりふ部分
-            MainBox.MainBox2(
-                CustomText(
-                    text: word,
-                    fontSize: _screenSizeWidth * 0.04,
-                    color: Constant.white),
-                _screenSizeWidth.toDouble(),
-                _screenSizeHeight.toDouble(),
-                0.8,
-                0.16),
+            MainBox.MainBox2(CustomText(text: word, fontSize: _screenSizeWidth * 0.04, color: Constant.white),
+                _screenSizeWidth.toDouble(), _screenSizeHeight.toDouble(), 0.8, 0.16),
           ],
         ),
       )),
     );
   }
 }
-
-
