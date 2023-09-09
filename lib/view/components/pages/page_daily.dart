@@ -14,9 +14,8 @@ class _PageDailyState extends State<PageDaily> {
   Widget build(BuildContext context) {
     var _screenSizeWidth = MediaQuery.of(context).size.width;
     var _screenSizeHeight = MediaQuery.of(context).size.height;
-     //ミッション達成率
+    //ミッション達成率
     var Achievement = items.todayList[2].where((element) => element == true).length / items.todayList[0].length * 100;
-
 
     return Scaffold(
         body: Center(
@@ -79,7 +78,8 @@ class _PageDailyState extends State<PageDaily> {
                 String itemDayly = items.todayList[0][index]; // ミッションのリストから値を取得
                 int itemPoint = items.todayList[1][index]; // 報酬Pのリストから値を取得
                 bool itemBool = items.todayList[2][index]; // 達成の有無のリストから値を取得
-                Color itemColor = items.todayList[3][index]; //達成の有無で色を変更
+                Color itemColor = items.todayList[3][index];
+                Color itemBottunColor = items.todayList[4][index]; //達成の有無で色を変更
 
                 //ここから表示部分
                 return ListTile(
@@ -126,6 +126,7 @@ class _PageDailyState extends State<PageDaily> {
                               if (!itemBool) {
                                 items.todayList[2][index] = true;
                                 items.todayList[3][index] = Constant.glay;
+                                items.todayList[4][index] = Constant.glay;
 
                                 // ポイント獲得ダイアログ
                                 showDialog<void>(
@@ -144,21 +145,21 @@ class _PageDailyState extends State<PageDaily> {
                                       backgroundColor: Constant.white, // 背景色
                                       content: Container(
                                         width: _screenSizeWidth * 0.5,
-                                        height: _screenSizeHeight * 0.35,
+                                        height: _screenSizeHeight * 0.6,
                                         child: Column(
                                           children: [
-                                            SizedBox(height: _screenSizeHeight * 0.01),
+                                            SizedBox(height: _screenSizeHeight * 0.05),
                                             // ほめことば
                                             CustomText(
                                               color: Constant.black,
                                               text: 'えらすぎ！',
                                               fontSize: _screenSizeHeight * 0.03,
                                             ),
-                                            SizedBox(height: _screenSizeHeight * 0.01),
+                                            SizedBox(height: _screenSizeHeight * 0.1),
                                             // ニャリオット表示
                                             Container(
-                                              width: _screenSizeWidth * 0.3,
-                                              height: _screenSizeWidth * 0.3,
+                                              width: _screenSizeWidth * 0.7,
+                                              height: _screenSizeWidth * 0.6,
                                               child: Image.asset(
                                                 'images/cat.png',
                                                 fit: BoxFit.cover,
@@ -179,7 +180,7 @@ class _PageDailyState extends State<PageDaily> {
                                 height: _screenSizeHeight * 0.05,
                                 alignment: const Alignment(0.0, 0.0),
                                 decoration:
-                                    BoxDecoration(color: Constant.sub3, borderRadius: BorderRadius.circular(10)), //角丸
+                                    BoxDecoration(color: itemBottunColor, borderRadius: BorderRadius.circular(10)), //角丸
                                 child: Row(children: [
                                   SizedBox(width: _screenSizeWidth * 0.02),
                                   //商品画像表示

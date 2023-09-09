@@ -88,6 +88,15 @@ class items {
       Constant.white,
       Constant.white,
       Constant.white,
+    ],
+    //ボタンの色
+    [
+      Constant.sub3,
+      Constant.sub3,
+      Constant.sub3,
+      Constant.sub3,
+      Constant.sub3,
+      Constant.sub3,
     ]
   ];
 
