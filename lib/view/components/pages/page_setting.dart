@@ -25,9 +25,7 @@ class _PageSetting extends State<PageSetting> {
         alignment: Alignment(0.0, 0.0),
 
       ),
-      
-
-
+    
     ));
   }
 }

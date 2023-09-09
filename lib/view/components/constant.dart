@@ -43,7 +43,7 @@ class CustomText extends StatelessWidget {
 class MainBox {
   static Widget MainBox2(Widget widget, double scleenwidth, double scleenheight,
       double width, double height,
-      {Color bordColor = Constant.main}) {
+      {Color bordColor = Constant.main,Color boederColor = Constant.white,double borderWidth = 2}) {
     //外側の箱
     return Container(
         width: scleenwidth * width,
@@ -62,8 +62,8 @@ class MainBox {
               color: bordColor,
               borderRadius: BorderRadius.circular(10), //角丸
               border: Border.all(
-                color: Constant.white,
-                width: 2,
+                color: boederColor,
+                width: borderWidth,
               ),
             ),
             child: widget));

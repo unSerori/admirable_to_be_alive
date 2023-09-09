@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'constant.dart';
 
 //管理が必要な変数などをまとめておく場所
 class items {
-
   //えらいいねとすごいいね
   static int erai = 10;
   static int good = 80;
@@ -71,9 +71,37 @@ class items {
     ],
   ];
 
+  //これでつくるとあとで困りそうなんですけれどひとまず ひとまず、、、、
   //今日のデイリーミッション
-  static List todayDailyList = [];
+  static List todayList = [
+    //内容
+    ['あさごはんたべる', 'おうちでる', 'でんしゃのる', 'おひるごはんちょうたつ', 'じゅぎょうでねない', 'おうちかえる'],
+    //報酬P
+    [20, 50, 40, 20, 40, 10],
+    //達成の有無
+    [false, false, false, false, false, false],
+    //色
+    [
+      Constant.white,
+      Constant.white,
+      Constant.white,
+      Constant.white,
+      Constant.white,
+      Constant.white,
+    ]
+  ];
 
   //明日のデイリーミッション
-  static List nextdayDailyList = [];
+  static List nextdayList = [
+    //内容
+    ['あさごはんたべる', 'おうちでる', 'でんしゃのる', 'おひるごはんちょうたつ'],
+    //報酬P
+    [20, 50, 40, 20],
+    //達成の有無
+    [false, false, false, false]
+  ];
+
+  //ミッション達成率
+  // ignore: non_constant_identifier_names
+  static var Achievement = todayList[2].where((element) => element == true).length / todayList[0].length * 100;
 }

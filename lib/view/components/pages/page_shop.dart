@@ -12,8 +12,8 @@ class PageShop extends StatefulWidget {
 
 class _PageShopState extends State<PageShop> {
   //交換所の色
-  static List<Color> shopColor = [Constant.white, Constant.sub1];
-  static List<Color> reverseShopColor = [Constant.sub1, Constant.white];
+  static List<Color> shopColor = [Constant.white, Constant.sub3];
+  static List<Color> reverseShopColor = [Constant.sub3, Constant.white];
   static List<Color> shopFontColor = [Constant.black, Constant.white];
   static List<Color> reverseshopFontColor = [Constant.white, Constant.black];
 
@@ -32,28 +32,32 @@ class _PageShopState extends State<PageShop> {
         width: _screenSizeWidth,
         height: _screenSizeHeight,
         padding: EdgeInsets.all(_screenSizeWidth * 0.01),
-        decoration: const BoxDecoration(color: Constant.main),
-        child: Column(
-          children: [
-            //戻るボタン
-            Align(
-              alignment: Alignment.centerLeft, //左寄せ
-              child: Row(children: [
-                SizedBox(width: _screenSizeWidth * 0.05),
-                IconButton(
-                  icon: const Icon(
-                    Icons.arrow_back_ios,
-                    color: Constant.white,
-                    size: 40,
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context); // 前のページに戻る
-                  },
+        decoration: const BoxDecoration(color: Constant.sub1),
+        child: Column(children: [
+          SizedBox(height: _screenSizeHeight * 0.02),
+          Row(children: [
+            Row(children: [
+              SizedBox(width: _screenSizeWidth * 0.05),
+              IconButton(
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: Constant.white,
+                  size: 40,
                 ),
-                SizedBox(width: _screenSizeWidth * 0.25),
-                CustomText(text: 'ショップ', fontSize: 20, color: Constant.white)
-              ]),
-            ),
+                onPressed: () {
+                  Navigator.pop(context); // 前のページに戻る
+                },
+              ),
+            ]),
+
+            
+           SizedBox(width: _screenSizeWidth*0.24,),
+            CustomText(text: 'ショップ', fontSize: _screenSizeWidth*0.055, color: Constant.white),
+             
+           
+          ]),
+          
+          
 
             SizedBox(height: _screenSizeHeight * 0.025),
             //スタンプカード えっ処理どうしよ、、、
@@ -145,7 +149,7 @@ class _PageShopState extends State<PageShop> {
                   height: _screenSizeHeight * 0.48,
                   decoration: BoxDecoration(
                     color: shopColor[shopIndex],
-                    //上部分角丸
+                    //下部分角丸
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30),
@@ -161,7 +165,6 @@ class _PageShopState extends State<PageShop> {
                       //リストとかを新しく生成しなおしてくれる素敵なメソッド
                       int index = entry.key;
                       List<String> itemNames = items.itemList[shopIndex][0]; // 商品名のリスト
-
                       String itemName = itemNames[index];
 
                       List<String> itemImages = items.itemList[shopIndex][1]; // 画像パスのリスト
@@ -201,6 +204,7 @@ class _PageShopState extends State<PageShop> {
                                   fontSize: _screenSizeHeight * 0.02,
                                 ),
                               ])),
+                              
                               Align(
                                 alignment: Alignment.centerRight, // 右寄せに配置
                                 // 必要ポイント
@@ -278,12 +282,16 @@ class _PageShopState extends State<PageShop> {
                                                                       color: Constant.sub3,
                                                                       borderRadius: BorderRadius.circular(10)), //角丸
                                                                   child: Row(children: [
+
+                                                                    //商品画像表示
                                                                     Container(
                                                                       width: _screenSizeWidth * 0.1,
                                                                       height: _screenSizeHeight * 0.07,
                                                                       child: Image.asset(items.money[shopIndex]),
                                                                     ),
                                                                     SizedBox(width: _screenSizeWidth * 0.005),
+
+                                                                    //消費ポイント表示
                                                                     CustomText(
                                                                         text: '$itemPoint',
                                                                         fontSize: _screenSizeHeight * 0.025,
