@@ -109,7 +109,7 @@ class _PageHomeState extends State<PageHome> {
                               height: _screenSizeWidth * 0.09,
                               padding: EdgeInsets.only(top: _screenSizeWidth * 0.01),
                               child: Image.asset(
-                                'images/gezi.png',
+                                items.Pictures[1],
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -126,7 +126,7 @@ class _PageHomeState extends State<PageHome> {
                               height: _screenSizeWidth * 0.1,
                               padding: EdgeInsets.only(top: _screenSizeWidth * 0.01),
                               child: Image.asset(
-                                'images/usagi.png',
+                                items.Pictures[0],
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -270,7 +270,7 @@ class _PageHomeState extends State<PageHome> {
                       SizedBox(
                         height: _screenSizeWidth * 0.8,
                         child: Image.asset(
-                          'images/cat.png',
+                          items.Pictures[2],
                           fit: BoxFit.cover,
                         ),
                       ),
