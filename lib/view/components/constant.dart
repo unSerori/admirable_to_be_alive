@@ -4,9 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 class Constant {
   static const Color main = Color(0xFF82E2E4);
   static const Color sub1 = Color(0xFFFF9F9F);
-  static const Color sub2 = Color(0xFFD7FF37);
+  static const Color sub2 = Color.fromARGB(255, 197, 233, 53);
   static const Color sub3 = Color(0xFFFFDC61);
   static const Color glay = Color(0xFFD9D9D9);
+  static const Color blackGlay = Color.fromARGB(255, 124, 124, 124);
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF3E3E3E);
 }

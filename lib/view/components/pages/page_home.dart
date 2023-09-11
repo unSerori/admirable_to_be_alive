@@ -22,6 +22,7 @@ class _PageHomeState extends State<PageHome> {
 
   
   //次の予定
+  //変更予定
   static int nextToDoh = 13;
   static int nextToDom = 30;
   static String nextToDo = '歯医者';
@@ -71,7 +72,7 @@ class _PageHomeState extends State<PageHome> {
                           ),
                         ),
                         child: CustomText(
-                          text: rank.toString(),
+                          text: items.userInfo['rank'].toString(),
                           fontSize: _screenSizeHeight * 0.05,
                           color: Constant.white,
                         ),
@@ -97,7 +98,7 @@ class _PageHomeState extends State<PageHome> {
                           ))),
                           child: CustomText(
                             color: Constant.black,
-                            text: name,
+                            text: items.userInfo['name'],
                             fontSize: _screenSizeWidth * 0.05,
                           ),
                         ),
@@ -117,7 +118,7 @@ class _PageHomeState extends State<PageHome> {
                               width: _screenSizeWidth * 0.15,
                               padding: EdgeInsets.only(top: _screenSizeWidth * 0.01),
                               child:
-                                  CustomText(color: Constant.black, text: '${items.erai}P', fontSize: _screenSizeWidth * 0.05),
+                                  CustomText(color: Constant.black, text: '${items.userInfo['points']['now']['erai']}P', fontSize: _screenSizeWidth * 0.05),
                             ),
 
                             //すごいいね
@@ -134,7 +135,7 @@ class _PageHomeState extends State<PageHome> {
                               width: _screenSizeWidth * 0.15,
                               padding: EdgeInsets.only(top: _screenSizeWidth * 0.01),
                               child:
-                                  CustomText(color: Constant.black, text: '${items.good}P', fontSize: _screenSizeWidth * 0.05),
+                                  CustomText(color: Constant.black, text: '${items.userInfo['points']['now']['good']}P', fontSize: _screenSizeWidth * 0.05),
                             ),
                           ],
                         )

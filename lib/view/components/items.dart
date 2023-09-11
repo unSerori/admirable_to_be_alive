@@ -4,9 +4,35 @@ import 'constant.dart';
 
 //管理が必要な変数などをまとめておく場所
 class items {
+
+  //ユーザー情報
+  //ユーザー情報は即更新せなあかんくない？とおもうのででいりーーと分けているのだがどう思いますかときく
+  static Map<String, dynamic> userInfo = {
+    'name':"おさかな",
+    'rank':0,
+    'points':{
+      'now':{
+        'erai':0,
+        'good':0,
+      },
+      'total':{
+        'totemoerai':0,
+        'totemogood':0,
+      }
+    },
+    'stamp':{
+      'nowStamp':0,
+      'totalStamp':0,
+    }
+  };
+
   //えらいいねとすごいいね
-  static int erai = 10;
-  static int good = 80;
+  static int erai = 0;
+  static int good = 0;
+
+  //累計えらいいねとすごいいね
+  static int sugokuerai = 0;
+  static int sugokugood = 0;
 
   //交換に必要なもの
   static List money = [Pictures[1], Pictures[0]];
@@ -79,9 +105,9 @@ class items {
     'assets/images/cat.png', //ねこ 2
     'assets/images/choki.png', //チョキ 3
     'assets/images/ichiban.PNG', //いちばん 4
+    'assets/images/onemu.PNG', //おねむ 5
   ];
 
-  //これでつくるとあとで困りそうなんですけれどひとまず ひとまず、、、、
   //今日のデイリーミッション
   static Map<String, dynamic> todayLists = {
     "id": [
@@ -118,36 +144,6 @@ class items {
     ]
   };
 
-  static List<Widget> children = [];
-
   //明日のデイリーミッション
-  static List nextdayList = [
-    //内容
-    ['あさごはんたべる', 'おうちでる', 'でんしゃのる', 'おひるごはんちょうたつ'],
-    //報酬P
-    [20, 50, 40, 20],
-    //達成の有無
-    [false, false, false, false]
-  ];
-
-  
-
-  //ミッション達成率
-  double calculateTruePercentage(Map<String, dynamic> items) {
-    if (items['id'] is List<Map<String, dynamic>>) {
-      List<Map<String, dynamic>> itemList = items['id'];
-      int totalItems = itemList.length;
-      int trueItems = itemList.where((item) => item['bool'] == true).length;
-
-      if (totalItems > 0) {
-        return (trueItems / totalItems) * 100.0;
-      }
-    }
-
-    return 0.0; // リストが存在しないか、要素が0の場合は0%を返す
-  }
-
-  void main() {
-    PageDailyState.Achievement = calculateTruePercentage(todayLists);
-  }
+  static Map<String, dynamic> nextDayList = {};
 }

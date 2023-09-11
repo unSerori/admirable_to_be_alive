@@ -1,3 +1,6 @@
+import 'dart:js_util';
+
+import 'package:admirable_to_be_alive_/main.dart';
 import 'package:flutter/material.dart';
 import '../constant.dart';
 import '../items.dart';
@@ -10,15 +13,12 @@ class PageDaily extends StatefulWidget {
 }
 
 class PageDailyState extends State<PageDaily> {
-
   //ミッション達成率
   static double Achievement = 0;
   @override
   Widget build(BuildContext context) {
     var _screenSizeWidth = MediaQuery.of(context).size.width;
     var _screenSizeHeight = MediaQuery.of(context).size.height;
-    
-    
 
     return Scaffold(
         body: Stack(children: [
@@ -82,9 +82,9 @@ class PageDailyState extends State<PageDaily> {
                     // int index = entry.key;
                     // var item = entry.value;
                     children: (items.todayLists['id'] as List<Map<String, dynamic>>?)?.map<Widget>((item) {
-                          int index = (items.todayLists['id'] as List<Map<String, dynamic>>?)?.indexOf(item) ?? -1;
-
-                          //var itemDayly = items.todayLists["id"][index]; // ミッションのリストから値を取得
+                          //['id']の中の要素数の取得
+                          int index =
+                              (items.todayLists['id'] as List<Map<String, dynamic>>?)?.indexOf(item) ?? -1; //null除外
 
                           //ここから表示部分
                           return ListTile(
@@ -139,7 +139,24 @@ class PageDailyState extends State<PageDaily> {
                                             }
                                           }
 
-                                          
+                                          //達成率
+                                          if (items.todayLists['id'] is List<Map<String, dynamic>>) {
+                                            //リスト取得
+                                            List<Map<String, dynamic>> itemList = items.todayLists['id'];
+                                            int totalItems = itemList.length;
+                                            int trueItems = itemList.where((item) => item['bool'] == true).length; //判定
+
+                                            if (totalItems > 0) {
+                                              Achievement = (trueItems / totalItems) * 100.0; //用意している管理用の変数に代入
+                                            }
+
+                                            //100%になったら、、のイベント つまりスタンプの建設予定地
+                                            if (Achievement == 100) {}
+                                          }
+
+                                          //ポイントの獲得
+                                          items.userInfo['points']['now']['erai'] += item['point'];
+                                          items.userInfo['points']['total']['totemoerai'] += item['point'];
 
                                           // ポイント獲得ダイアログ
                                           showDialog<void>(
@@ -217,7 +234,7 @@ class PageDailyState extends State<PageDaily> {
                                               borderRadius: BorderRadius.circular(10)), //角丸
                                           child: Row(children: [
                                             SizedBox(width: _screenSizeWidth * 0.02),
-                                            //商品画像表示
+                                            //画像表示
                                             Container(
                                               width: _screenSizeWidth * 0.07,
                                               height: _screenSizeHeight * 0.07,
@@ -225,7 +242,7 @@ class PageDailyState extends State<PageDaily> {
                                             ),
                                             SizedBox(width: _screenSizeWidth * 0.025),
 
-                                            //消費ポイント表示
+                                            //獲得ポイント表示
                                             CustomText(
                                                 text: '${item['point']}',
                                                 fontSize: _screenSizeHeight * 0.025,
