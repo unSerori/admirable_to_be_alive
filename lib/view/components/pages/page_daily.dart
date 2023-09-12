@@ -154,6 +154,8 @@ class PageDailyState extends State<PageDaily> {
                                             if (Achievement == 100) {}
                                           }
 
+                                          //ぷるぷるぷるりくえすと
+
                                           //ポイントの獲得
                                           items.userInfo['points']['now']['erai'] += item['point'];
                                           items.userInfo['points']['total']['totemoerai'] += item['point'];
