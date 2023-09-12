@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'items.dart';
 
 class Constant {
   static const Color main = Color(0xFF82E2E4);
@@ -69,6 +70,38 @@ class MainBox {
             child: widget));
   }
 }
+
+//スタンプ用ボックス
+class stampBox {
+  static Widget stampBox2(
+    double scleenwidth,
+    
+    bool stampBoxBoll,
+  ) {
+    Widget myWidget;
+    if (stampBoxBoll) {
+      myWidget = Image.asset(items.Pictures[6]);
+    } else {
+      myWidget = Opacity(opacity: 0, child: Image.asset(items.Pictures[6]));
+    }
+
+    //枠
+    return Container(
+      width: scleenwidth*0.15,
+      height: scleenwidth*0.15,
+      margin: EdgeInsets.all(scleenwidth * 0.015),
+      alignment: const Alignment(0.0, 0.0), //配置を真ん中にする
+      decoration: BoxDecoration(
+        color: Constant.white,
+        borderRadius: BorderRadius.circular(1), //角丸
+      ),
+      //スタンプ
+      child: myWidget,
+    );
+  }
+}
+
+
 
 /*
 

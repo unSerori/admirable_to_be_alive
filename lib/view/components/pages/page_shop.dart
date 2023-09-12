@@ -35,43 +35,114 @@ class _PageShopState extends State<PageShop> {
         decoration: const BoxDecoration(color: Constant.sub1),
         child: Column(
           children: [
-            SizedBox(height: _screenSizeHeight * 0.02),
             Row(children: [
               SizedBox(width: _screenSizeWidth * 0.05),
               IconButton(
                 icon: const Icon(
                   Icons.arrow_back_ios,
                   color: Constant.white,
-                  size: 40,
+                  size: 35,
                 ),
                 onPressed: () {
                   Navigator.pop(context); // 前のページに戻る
                 },
               ),
               SizedBox(
-                width: _screenSizeWidth * 0.24,
+                width: _screenSizeWidth * 0.225,
               ),
-              CustomText(text: 'ショップ', fontSize: _screenSizeWidth * 0.055, color: Constant.white),
+              Container(
+                width: _screenSizeWidth * 0.25,
+                height: _screenSizeHeight * 0.05,
+
+                alignment: const Alignment(0.0, 0.5), //文字を真ん中にす
+                child: CustomText(text: 'ショップ', fontSize: _screenSizeWidth * 0.055, color: Constant.white),
+              )
             ]),
 
             SizedBox(height: _screenSizeHeight * 0.025),
-            //スタンプカード建設予定地 えっ処理どうしよ、、、
+
+            //スタンプカード
             Container(
-              //margin: EdgeInsets.all(_screenSizeHeight * 0.05),
-              width: _screenSizeWidth * 0.9,
-              height: _screenSizeHeight * 0.3,
-              decoration: BoxDecoration(
-                color: Constant.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Image.asset(
-                items.Pictures[5],
-                fit: BoxFit.cover,
-              ),
-            ),
+                //margin: EdgeInsets.all(_screenSizeHeight * 0.05),
+                width: _screenSizeWidth * 0.9,
+                height: _screenSizeHeight * 0.3,
+                decoration: BoxDecoration(
+                  color: Constant.sub3,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Stack(
+                  children: <Widget>[
+                    Column(
+                      children: [
+                        Container(
+                            margin: EdgeInsets.all(_screenSizeWidth * 0.03),
+                            child: Row(
+                              children: [
+                                CustomText(text: 'スタンプカード', fontSize: _screenSizeWidth * 0.05, color: Constant.white),
+                                SizedBox(
+                                  width: _screenSizeWidth * 0.3,
+                                ),
+                                CustomText(text: 'No.', fontSize: _screenSizeWidth * 0.05, color: Constant.white),
+                                Container(
+                                  width: _screenSizeWidth * 0.1,
+                                  height: _screenSizeHeight * 0.03,
+                                  alignment: const Alignment(0.0, 0.0), //文字を真ん中にする
+                                  decoration:
+                                      BoxDecoration(color: Constant.white, borderRadius: BorderRadius.circular(5)),
+                                  // スタンプカード枚数
+                                  child: CustomText(
+                                      text: items.userInfo['stamp']['totalStampCard'].toString(),
+                                      fontSize: _screenSizeWidth * 0.04,
+                                      color: Constant.blackGlay),
+                                )
+                              ],
+                            )),
+
+                        // スタンプ部分
+                        Container(
+                          width: _screenSizeWidth * 0.8,
+                          height: _screenSizeHeight * 0.23,
+                          // padding: EdgeInsets.only(left: _screenSizeWidth * 0.01),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  stampBox.stampBox2(_screenSizeWidth, items.userInfo['stamp']['now'][0]),
+                                  stampBox.stampBox2(_screenSizeWidth, items.userInfo['stamp']['now'][1]),
+                                  stampBox.stampBox2(_screenSizeWidth, items.userInfo['stamp']['now'][2]),
+                                  stampBox.stampBox2(_screenSizeWidth, items.userInfo['stamp']['now'][3]),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  stampBox.stampBox2(_screenSizeWidth, items.userInfo['stamp']['now'][4]),
+                                  stampBox.stampBox2(_screenSizeWidth, items.userInfo['stamp']['now'][5]),
+                                  stampBox.stampBox2(_screenSizeWidth, items.userInfo['stamp']['now'][6]),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Positioned(
+                      top: _screenSizeWidth*0.1,
+                      left: _screenSizeHeight * 0.325,
+                      child: Container(
+                        width: _screenSizeWidth * 0.3525,
+                        height: _screenSizeHeight * 0.3525,
+                        alignment: const Alignment(0.0, 0.0),
+                        child: Image.asset(
+                          items.Pictures[8],
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    )
+                  ],
+                )),
 
             SizedBox(
-              height: _screenSizeHeight * 0.02,
+              height: _screenSizeHeight * 0.03,
             ),
 
             Container(
@@ -81,11 +152,11 @@ class _PageShopState extends State<PageShop> {
               ),
               Column(children: [
                 Row(children: [
-                  //交換所タブ
-                  //えらいいね
+                  // 交換所タブ
+                  // えらいいね
                   InkWell(
                     onTap: () {
-                      shopIndex = 0; //indexの変更で参照するリストを操作している
+                      shopIndex = 0; // indexの変更で参照するリストを操作している
                       setState(() {}); //tapで画面更新
                     },
                     child: Container(
@@ -104,7 +175,7 @@ class _PageShopState extends State<PageShop> {
                           Container(
                             width: _screenSizeWidth * 0.1,
                             height: _screenSizeHeight * 0.07,
-                            child: Image.asset(items.money[0]), //交換に必要なむいむいの画像
+                            child: Image.asset(items.money[0]), // 交換に必要なむいむいの画像
                           ),
                           SizedBox(width: _screenSizeWidth * 0.02),
                           CustomText(
@@ -116,8 +187,8 @@ class _PageShopState extends State<PageShop> {
                   //すごいいね
                   InkWell(
                     onTap: () {
-                      shopIndex = 1; //indexの変更で参照するリストを操作している
-                      setState(() {}); //tapで画面更新
+                      shopIndex = 1; // indexの変更で参照するリストを操作している
+                      setState(() {}); // tapで画面更新
                     },
                     child: Container(
                         width: _screenSizeWidth * 0.45,
@@ -135,7 +206,7 @@ class _PageShopState extends State<PageShop> {
                           Container(
                             width: _screenSizeWidth * 0.1,
                             height: _screenSizeHeight * 0.07,
-                            child: Image.asset(items.money[1]), //交換に必要なうさぎさんの画像
+                            child: Image.asset(items.money[1]), // 交換に必要なうさぎさんの画像
                           ),
                           SizedBox(width: _screenSizeWidth * 0.02),
                           CustomText(
@@ -162,8 +233,8 @@ class _PageShopState extends State<PageShop> {
                   //リスト部分
                   child: ListView(
                     children: items.itemList[shopIndex][0]
-                        .asMap() //リスト内の要素とインデックスをペアにしてとってきてくれる素敵なメソッド
-                        .entries //マップ内の、、でasMapと同じようなことしてくれる素敵なメソッド
+                        .asMap() // リスト内の要素とインデックスをペアにしてとってきてくれる素敵なメソッド
+                        .entries // マップ内の、、でasMapと同じようなことしてくれる素敵なメソッド
                         .map<Widget>((entry) {
                       //リストとかを新しく生成しなおしてくれる素敵なメソッド
                       int index = entry.key;
@@ -174,12 +245,12 @@ class _PageShopState extends State<PageShop> {
                       String itemImage = itemImages[index];
 
                       List<int> itemPoints = items.itemList[shopIndex][2];
-                      int itemPoint = itemPoints[index]; //必要ポイントのリスト
+                      int itemPoint = itemPoints[index]; // 必要ポイントのリスト
 
                       List<String> itemConcepts = items.itemList[shopIndex][3];
-                      String itemConcept = itemConcepts[index]; //商品の説明
+                      String itemConcept = itemConcepts[index]; // 商品の説明
 
-                      //ここから交換品リスト
+                      // ここから交換品リスト
                       return ListTile(
                         title: Container(
                           margin: EdgeInsets.all(_screenSizeWidth * 0.025),
@@ -211,9 +282,9 @@ class _PageShopState extends State<PageShop> {
                                 alignment: Alignment.centerRight, // 右寄せに配置
                                 // 必要ポイント
                                 child: Row(children: [
-                                  //購入ボタン
+                                  // 購入ボタン
                                   InkWell(
-                                    //ここからしばらく押したときの動作
+                                    // ここからしばらく押したときの動作
                                     onTap: () {
                                       //購入確認ダイアログ
                                       showDialog<void>(
@@ -238,14 +309,14 @@ class _PageShopState extends State<PageShop> {
                                                 children: [
                                                   SizedBox(height: _screenSizeHeight * 0.01),
 
-                                                  //商品名
+                                                  // 商品名
                                                   CustomText(
                                                     color: Constant.black,
                                                     text: itemName,
                                                     fontSize: _screenSizeHeight * 0.03,
                                                   ),
                                                   SizedBox(height: _screenSizeHeight * 0.01),
-                                                  //画像
+                                                  // 画像
                                                   Container(
                                                     width: _screenSizeWidth * 0.3,
                                                     height: _screenSizeWidth * 0.3,
@@ -254,7 +325,7 @@ class _PageShopState extends State<PageShop> {
                                                       fit: BoxFit.cover,
                                                     ),
                                                   ),
-                                                  //説明
+                                                  // 説明
                                                   Container(
                                                     height: _screenSizeHeight * 0.07,
                                                     alignment: const Alignment(0.0, 0.0),
@@ -265,29 +336,29 @@ class _PageShopState extends State<PageShop> {
                                                     ),
                                                   ),
 
-                                                  //ボタン
+                                                  // ボタン
                                                   Align(
                                                       alignment: Alignment.bottomCenter, //下寄せ
                                                       child: Row(
                                                         children: [
                                                           SizedBox(width: _screenSizeWidth * 0.05),
-                                                          //購入確定ボタン
+                                                          // 購入確定ボタン
                                                           InkWell(
                                                               onTap: () {
-                                                                //えらいいねショップ
+                                                                // えらいいねショップ
                                                                 if (shopIndex == 0) {
-                                                                  //お金がたりない
+                                                                  // お金がたりない
                                                                   if (items.userInfo['points']['now']['erai'] <
                                                                       itemPoint) {
                                                                     CustomText(
-                                                                        text: 'たりないよ！！', //仮置き　ダイアログ建設予定
+                                                                        text: 'たりないよ！！', // 仮置き　ダイアログ建設予定
                                                                         fontSize: 10,
                                                                         color: Constant.black);
                                                                   } else {
                                                                     items.userInfo['points']['now']['erai'] -=
-                                                                        itemPoint; //えらいいねポイントの消費
+                                                                        itemPoint; // えらいいねポイントの消費
                                                                   }
-                                                                  //すごいいねショップ
+                                                                  // すごいいねショップ
                                                                 } else {
                                                                   if (items.userInfo['points']['now']['good'] <
                                                                       itemPoint) {
@@ -297,9 +368,10 @@ class _PageShopState extends State<PageShop> {
                                                                         color: Constant.black);
                                                                   } else {
                                                                     items.userInfo['points']['now']['good'] -=
-                                                                        itemPoint; //すごいいねポイントの消費
+                                                                        itemPoint; // すごいいねポイントの消費
                                                                   }
                                                                 }
+                                                                setState(() {}); // 画面の更新
                                                                 Navigator.of(context).pop(); //前の画面に戻る
                                                               },
                                                               child: Container(

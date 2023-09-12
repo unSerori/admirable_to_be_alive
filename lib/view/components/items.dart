@@ -9,7 +9,7 @@ class items {
   //ユーザー情報は即更新せなあかんくない？とおもうのででいりーーと分けているのだがどう思いますかときく
   static Map<String, dynamic> userInfo = {
     'name':"おさかな",
-    'rank':0,
+    'rank':1,
     'points':{
       'now':{
         'erai':0,
@@ -21,18 +21,12 @@ class items {
       }
     },
     'stamp':{
-      'nowStamp':0,
-      'totalStamp':0,
+      'now':[
+        false,false,false,false,false,false,false
+      ],
+      'totalStampCard':0,
     }
   };
-
-  //えらいいねとすごいいね
-  static int erai = 0;
-  static int good = 0;
-
-  //累計えらいいねとすごいいね
-  static int sugokuerai = 0;
-  static int sugokugood = 0;
 
   //交換に必要なもの
   static List money = [Pictures[1], Pictures[0]];
@@ -106,8 +100,9 @@ class items {
     'assets/images/choki.png', //チョキ 3
     'assets/images/ichiban.PNG', //いちばん 4
     'assets/images/onemu.PNG', //おねむ 5
-    'assets/items/stamp.png',  //スタンプ 6
-    'assets/items/stampCard.png'  //スタンプカード 7
+    'assets/images/stamp.png',  //スタンプ 6
+    'assets/images/stampCard.png', //スタンプカード 7
+    'assets/images/goodCat.png'  //スタンプカード 8
   ];
 
   //今日のデイリーミッション
