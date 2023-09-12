@@ -106,6 +106,8 @@ class items {
     'assets/images/choki.png', //チョキ 3
     'assets/images/ichiban.PNG', //いちばん 4
     'assets/images/onemu.PNG', //おねむ 5
+    'assets/items/stamp.png',  //スタンプ 6
+    'assets/items/stampCard.png'  //スタンプカード 7
   ];
 
   //今日のデイリーミッション

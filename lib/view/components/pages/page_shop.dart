@@ -64,6 +64,10 @@ class _PageShopState extends State<PageShop> {
                 color: Constant.white,
                 borderRadius: BorderRadius.circular(10),
               ),
+              child: Image.asset(
+                items.Pictures[5],
+                fit: BoxFit.cover,
+              ),
             ),
 
             SizedBox(
@@ -283,7 +287,7 @@ class _PageShopState extends State<PageShop> {
                                                                     items.userInfo['points']['now']['erai'] -=
                                                                         itemPoint; //えらいいねポイントの消費
                                                                   }
-                                                                //すごいいねショップ
+                                                                  //すごいいねショップ
                                                                 } else {
                                                                   if (items.userInfo['points']['now']['good'] <
                                                                       itemPoint) {
@@ -296,7 +300,7 @@ class _PageShopState extends State<PageShop> {
                                                                         itemPoint; //すごいいねポイントの消費
                                                                   }
                                                                 }
-                                                                Navigator.of(context).pop();
+                                                                Navigator.of(context).pop(); //前の画面に戻る
                                                               },
                                                               child: Container(
                                                                   padding:
