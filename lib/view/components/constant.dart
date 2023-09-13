@@ -167,7 +167,7 @@ class HttpToServer {  // HttpLib
   // コンストラクタってなに？？
   HttpToServer();
 
-  // "/send_userInfo", "POST", items.userInfo
+  // "URLパラメータ", "HTTPメソッド", "body"  例えば (/send_userInfo", "POST", items.userInfo)
   // HTTP リクエストを送信する関数 
   static Future<List> httpReq(String path_para, String method, Map<String, dynamic> body) async {
     //header
@@ -191,7 +191,6 @@ class HttpToServer {  // HttpLib
       // HTTPリクエストを送信。 seconds: 5 で指定した秒数応答がなかったらタイムアウトで例外を発生させる
       var res = await req.send();//.timeout(const Duration(seconds: 5));
       debugPrint(res.toString());
-      debugPrint("qawsedrftyhuji");
       // レスポンスをストリームから文字列に変換して保存
       final resBody = await res.stream.bytesToString();
 
