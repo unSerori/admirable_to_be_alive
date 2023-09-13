@@ -170,6 +170,8 @@ class PageDailyState extends State<PageDaily> {
                                             }
                                           }
 
+                                          //ぷるぷるぷるりくえすと
+
                                           //ポイントの獲得
                                           items.userInfo['points']['now']['erai'] += item['point'];
                                           items.userInfo['points']['total']['totemoerai'] += item['point'];
