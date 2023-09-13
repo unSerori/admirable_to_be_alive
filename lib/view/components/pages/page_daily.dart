@@ -104,7 +104,7 @@ class PageDailyState extends State<PageDaily> {
                                   CircleAvatar(
                                     radius: 30,
                                     backgroundColor: Constant.glay,
-                                    backgroundImage: AssetImage(items.Pictures[3]),
+                                    backgroundImage: AssetImage(items.icons[item["picture"]]),
                                   ),
                                   SizedBox(
                                     width: _screenSizeWidth * 0.02,
