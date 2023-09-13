@@ -53,8 +53,7 @@ class _PageShopState extends State<PageShop> {
               Container(
                 width: _screenSizeWidth * 0.25,
                 height: _screenSizeHeight * 0.05,
-
-                alignment: const Alignment(0.0, 0.5), //文字を真ん中にす
+                alignment: const Alignment(0.0, 0.5), //文字配置位置調整
                 child: CustomText(text: 'ショップ', fontSize: _screenSizeWidth * 0.055, color: Constant.white),
               )
             ]),
@@ -126,7 +125,7 @@ class _PageShopState extends State<PageShop> {
                       ],
                     ),
                     Positioned(
-                      top: _screenSizeWidth*0.1,
+                      top: _screenSizeWidth * 0.1,
                       left: _screenSizeHeight * 0.325,
                       child: Container(
                         width: _screenSizeWidth * 0.3525,
@@ -232,24 +231,10 @@ class _PageShopState extends State<PageShop> {
 
                   //リスト部分
                   child: ListView(
-                    children: items.itemList[shopIndex][0]
-                        .asMap() // リスト内の要素とインデックスをペアにしてとってきてくれる素敵なメソッド
-                        .entries // マップ内の、、でasMapと同じようなことしてくれる素敵なメソッド
-                        .map<Widget>((entry) {
-                      //リストとかを新しく生成しなおしてくれる素敵なメソッド
-                      int index = entry.key;
-                      List<String> itemNames = items.itemList[shopIndex][0]; // 商品名のリスト
-                      String itemName = itemNames[index];
-
-                      List<String> itemImages = items.itemList[shopIndex][1]; // 画像パスのリスト
-                      String itemImage = itemImages[index];
-
-                      List<int> itemPoints = items.itemList[shopIndex][2];
-                      int itemPoint = itemPoints[index]; // 必要ポイントのリスト
-
-                      List<String> itemConcepts = items.itemList[shopIndex][3];
-                      String itemConcept = itemConcepts[index]; // 商品の説明
-
+                    children: (items.itemList_['shops'][shopIndex] as List<Map<String, dynamic>>).map<Widget>((item) {
+                      // 'shops'内の要素数の取得
+                      int index = (items.itemList_['shops'][shopIndex] as List<Map<String, dynamic>>?)?.indexOf(item) ??
+                          -1; // null除外
                       // ここから交換品リスト
                       return ListTile(
                         title: Container(
@@ -264,7 +249,7 @@ class _PageShopState extends State<PageShop> {
                                   width: _screenSizeWidth * 0.08,
                                   height: _screenSizeWidth * 0.08,
                                   child: Image.asset(
-                                    itemImage,
+                                    items.itemList_['shops'][shopIndex][index]['itemPicture'],
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -274,7 +259,7 @@ class _PageShopState extends State<PageShop> {
                                 // 商品名
                                 CustomText(
                                   color: shopFontColor[shopIndex],
-                                  text: itemName,
+                                  text: items.itemList_['shops'][shopIndex][index]['itemName'],
                                   fontSize: _screenSizeHeight * 0.02,
                                 ),
                               ])),
@@ -312,7 +297,7 @@ class _PageShopState extends State<PageShop> {
                                                   // 商品名
                                                   CustomText(
                                                     color: Constant.black,
-                                                    text: itemName,
+                                                    text: items.itemList_['shops'][shopIndex][index]['itemName'],
                                                     fontSize: _screenSizeHeight * 0.03,
                                                   ),
                                                   SizedBox(height: _screenSizeHeight * 0.01),
@@ -321,7 +306,7 @@ class _PageShopState extends State<PageShop> {
                                                     width: _screenSizeWidth * 0.3,
                                                     height: _screenSizeWidth * 0.3,
                                                     child: Image.asset(
-                                                      itemImage,
+                                                      items.itemList_['shops'][shopIndex][index]['itemPicture'],
                                                       fit: BoxFit.cover,
                                                     ),
                                                   ),
@@ -331,7 +316,7 @@ class _PageShopState extends State<PageShop> {
                                                     alignment: const Alignment(0.0, 0.0),
                                                     child: CustomText(
                                                       color: Constant.black,
-                                                      text: itemConcept,
+                                                      text: items.itemList_['shops'][shopIndex][index]['itemInfo'],
                                                       fontSize: _screenSizeHeight * 0.02,
                                                     ),
                                                   ),
@@ -349,26 +334,30 @@ class _PageShopState extends State<PageShop> {
                                                                 if (shopIndex == 0) {
                                                                   // お金がたりない
                                                                   if (items.userInfo['points']['now']['erai'] <
-                                                                      itemPoint) {
+                                                                      items.itemList_['shops'][shopIndex][index]
+                                                                          ['itemPoint']) {
                                                                     CustomText(
                                                                         text: 'たりないよ！！', // 仮置き　ダイアログ建設予定
                                                                         fontSize: 10,
                                                                         color: Constant.black);
                                                                   } else {
                                                                     items.userInfo['points']['now']['erai'] -=
-                                                                        itemPoint; // えらいいねポイントの消費
+                                                                        items.itemList_['shops'][shopIndex][index]
+                                                                            ['itemPoint']; // えらいいねポイントの消費
                                                                   }
                                                                   // すごいいねショップ
                                                                 } else {
                                                                   if (items.userInfo['points']['now']['good'] <
-                                                                      itemPoint) {
+                                                                      items.itemList_['shops'][shopIndex][index]
+                                                                          ['itemPoint']) {
                                                                     CustomText(
                                                                         text: 'たりないよ！！', //同様
                                                                         fontSize: 10,
                                                                         color: Constant.black);
                                                                   } else {
                                                                     items.userInfo['points']['now']['good'] -=
-                                                                        itemPoint; // すごいいねポイントの消費
+                                                                        items.itemList_['shops'][shopIndex][index]
+                                                                            ['itemPoint']; // すごいいねポイントの消費
                                                                   }
                                                                 }
                                                                 setState(() {}); // 画面の更新
@@ -394,7 +383,8 @@ class _PageShopState extends State<PageShop> {
 
                                                                     //消費ポイント表示
                                                                     CustomText(
-                                                                        text: '$itemPoint',
+                                                                        text:
+                                                                            '${items.itemList_['shops'][shopIndex][index]['itemPoint']}',
                                                                         fontSize: _screenSizeHeight * 0.025,
                                                                         color: Constant.white),
                                                                   ]))),
@@ -438,7 +428,7 @@ class _PageShopState extends State<PageShop> {
                                           borderRadius: BorderRadius.circular(10)), //角丸
                                       child: CustomText(
                                         color: reverseshopFontColor[shopIndex],
-                                        text: '$itemPoint 匹', // ポイントを文字列に変換
+                                        text: '${items.itemList_['shops'][shopIndex][index]['itemPoint']} 匹', // ポイントを文字列に変換
                                         fontSize: _screenSizeHeight * 0.025,
                                       ),
                                     ),

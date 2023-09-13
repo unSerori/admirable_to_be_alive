@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:admirable_to_be_alive_/view/components/app.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'items.dart';
@@ -41,6 +44,38 @@ class CustomText extends StatelessWidget {
   }
 }
 
+class iconPictures extends StatefulWidget {
+  int picture;
+  iconPictures({
+    Key? key,
+    required this.picture,
+  }) : super(key: key);
+
+  @override
+  _iconsPictures createState() => _iconsPictures();
+}
+
+class _iconsPictures extends State<iconPictures> {
+  
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: EdgeInsets.all(5),
+        child: InkWell(
+            onTap: () {
+              items.iconNumber = widget.picture;
+              Navigator.pop(context);
+
+              setState(() {});
+            },
+            child: CircleAvatar(
+              radius: 38,
+              backgroundColor: Constant.glay,
+              backgroundImage: AssetImage(items.icons[widget.picture]),
+            )));
+  }
+}
+
 //枠線付きボックス
 class MainBox {
   static Widget MainBox2(Widget widget, double scleenwidth, double scleenheight, double width, double height,
@@ -75,7 +110,6 @@ class MainBox {
 class stampBox {
   static Widget stampBox2(
     double scleenwidth,
-    
     bool stampBoxBoll,
   ) {
     Widget myWidget;
@@ -87,8 +121,8 @@ class stampBox {
 
     //枠
     return Container(
-      width: scleenwidth*0.15,
-      height: scleenwidth*0.15,
+      width: scleenwidth * 0.15,
+      height: scleenwidth * 0.15,
       margin: EdgeInsets.all(scleenwidth * 0.015),
       alignment: const Alignment(0.0, 0.0), //配置を真ん中にする
       decoration: BoxDecoration(
@@ -98,6 +132,38 @@ class stampBox {
       //スタンプ
       child: myWidget,
     );
+  }
+}
+
+
+class dailyInfo extends StatefulWidget {
+  int picture;
+  dailyInfo({
+    Key? key,
+    required this.picture,
+  }) : super(key: key);
+
+  @override
+  _dailyInfo createState() => _dailyInfo();
+}
+
+class _dailyInfo extends State<dailyInfo> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: EdgeInsets.all(5),
+        child: InkWell(
+            onTap: () {
+              items.iconNumber = widget.picture;
+              Navigator.pop(context);
+
+              setState(() {});
+            },
+            child: CircleAvatar(
+              radius: 38,
+              backgroundColor: Constant.glay,
+              backgroundImage: AssetImage(items.icons[widget.picture]),
+            )));
   }
 }
 
