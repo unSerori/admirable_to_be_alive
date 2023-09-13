@@ -151,7 +151,23 @@ class PageDailyState extends State<PageDaily> {
                                             }
 
                                             //100%になったら、、のイベント つまりスタンプの建設予定地
-                                            if (Achievement == 100) {}
+                                            if (Achievement == 100) {
+                                              if (items.userInfo['stamp']['now'][6]) {
+                                                items.userInfo['stamp']
+                                                    ['now'] = [false, false, false, false, false, false, false];
+                                                items.userInfo['stamp']['totalStampCard'] += 1;
+
+                                                //おにゅーのかーどだよという主張をする建設予定地
+                                              }
+
+                                              //スタンプ押す場所の判定
+                                              for (int i = 0; i < items.userInfo['stamp']['now'].length; i++) {
+                                                if (!items.userInfo['stamp']['now'][i]) {
+                                                  items.userInfo['stamp']['now'][i] = true;
+                                                  break;
+                                                }
+                                              }
+                                            }
                                           }
 
                                           //ぷるぷるぷるりくえすと
