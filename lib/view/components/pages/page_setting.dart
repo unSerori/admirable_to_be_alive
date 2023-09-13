@@ -50,6 +50,10 @@ class _PageSetting extends State<PageSetting> {
             InkWell(
               onTap: () {
                 //ここに処理
+                // 仮にここをユーザー情報POSTのボタンとする
+                //HttpToServer.httpReq("/send_userInfo", "POST", items.userInfo);
+                debugPrint(HttpToServer.httpReq("/post_userInfo", "POST", items.userInfo).toString());
+
               },
               child: MainBox.MainBox2(
                   CustomText(
