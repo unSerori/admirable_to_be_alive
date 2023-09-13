@@ -142,6 +142,7 @@ class stampBox {
 
 class dailyInfo extends StatefulWidget {
   int picture;
+  
   dailyInfo({
     Key? key,
     required this.picture,
@@ -270,6 +271,8 @@ class HttpToServer {  // HttpLib
   // "URLパラメータ", "HTTPメソッド", "body"  例えば (/send_userInfo", "POST", items.userInfo)
   // HTTP リクエストを送信する関数 
   static Future<List> httpReq(String path_para, String method, Map<String, dynamic> body) async {
+
+    
     //header
     var headersList = {
       'Accept': '*/*',

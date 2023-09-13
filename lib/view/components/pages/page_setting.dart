@@ -54,9 +54,7 @@ class _PageSetting extends State<PageSetting> {
               onTap: () {
                 
                 //ここに処理
-                // 仮にここをユーザー情報POSTのボタンとする
-                //HttpToServer.httpReq("/send_userInfo", "POST", items.userInfo);
-                debugPrint(HttpToServer.httpReq("/post_userInfo", "POST", items.userInfo).toString());
+                
 
                 
                 //ページ遷移

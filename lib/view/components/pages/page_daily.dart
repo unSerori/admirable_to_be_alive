@@ -229,7 +229,7 @@ class PageDailyState extends State<PageDaily> {
                                                           width: _screenSizeWidth * 0.07,
                                                         ),
                                                         Image.asset(
-                                                          items.Pictures[4],
+                                                          items.icons[4],
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ])
