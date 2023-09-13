@@ -13,7 +13,7 @@ class items {
     'points': {
       'now': {
         'erai': 0,
-        'good': 0,
+        'good': 0, 
       },
       'total': {
         'totemoerai': 0,
