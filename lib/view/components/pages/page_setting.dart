@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../constant.dart';
 import '../items.dart';
+import 'setting/page_accaunt.dart';
+import 'setting/page_help.dart';
+import 'setting/page_setting_daily.dart';
 
 class PageSetting extends StatefulWidget {
   const PageSetting({Key? key}) : super(key: key);
@@ -49,10 +52,22 @@ class _PageSetting extends State<PageSetting> {
             //アカウント設定
             InkWell(
               onTap: () {
+                
                 //ここに処理
-                // 仮にここをユーザー情報POSTのボタンとする
-                //HttpToServer.httpReq("/send_userInfo", "POST", items.userInfo);
-                debugPrint(HttpToServer.httpReq("/post_userInfo", "POST", items.userInfo).toString());
+                
+
+                
+                //ページ遷移
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => settingAccaunt()),
+                ).then((value) {
+                  //戻ってきたら再描画
+                  setState(() {});
+                });
+
+               
+
 
               },
               child: MainBox.MainBox2(
@@ -72,7 +87,14 @@ class _PageSetting extends State<PageSetting> {
             //デイリーミッション設定
             InkWell(
               onTap: () {
-                //ここに処理
+                //ページ遷移
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => settingDaily()),
+                ).then((value) {
+                  //戻ってきたら再描画
+                  setState(() {});
+                });
               },
               child: MainBox.MainBox2(
                   CustomText(
@@ -91,7 +113,14 @@ class _PageSetting extends State<PageSetting> {
             //ヘルプ
             InkWell(
               onTap: () {
-                //ここに処理
+                //ページ遷移
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PageHelp()),
+                ).then((value) {
+                  //戻ってきたら再描画
+                  setState(() {});
+                });
               },
               child: MainBox.MainBox2(
                   CustomText(
@@ -106,7 +135,9 @@ class _PageSetting extends State<PageSetting> {
                   0.1),
             ),
 
-            SizedBox(height: _screenSizeHeight*0.13,),
+            SizedBox(
+              height: _screenSizeHeight * 0.13,
+            ),
 
             //画像
             Align(

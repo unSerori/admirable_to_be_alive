@@ -104,7 +104,7 @@ class PageDailyState extends State<PageDaily> {
                                   CircleAvatar(
                                     radius: 30,
                                     backgroundColor: Constant.glay,
-                                    backgroundImage: AssetImage(items.Pictures[3]),
+                                    backgroundImage: AssetImage(items.icons[item["picture"]]),
                                   ),
                                   SizedBox(
                                     width: _screenSizeWidth * 0.02,
@@ -151,7 +151,23 @@ class PageDailyState extends State<PageDaily> {
                                             }
 
                                             //100%になったら、、のイベント つまりスタンプの建設予定地
-                                            if (Achievement == 100) {}
+                                            if (Achievement == 100) {
+                                              if (items.userInfo['stamp']['now'][6]) {
+                                                items.userInfo['stamp']
+                                                    ['now'] = [false, false, false, false, false, false, false];
+                                                items.userInfo['stamp']['totalStampCard'] += 1;
+
+                                                //おにゅーのかーどだよという主張をする建設予定地
+                                              }
+
+                                              //スタンプ押す場所の判定
+                                              for (int i = 0; i < items.userInfo['stamp']['now'].length; i++) {
+                                                if (!items.userInfo['stamp']['now'][i]) {
+                                                  items.userInfo['stamp']['now'][i] = true;
+                                                  break;
+                                                }
+                                              }
+                                            }
                                           }
 
                                           //ぷるぷるぷるりくえすと
@@ -213,7 +229,7 @@ class PageDailyState extends State<PageDaily> {
                                                           width: _screenSizeWidth * 0.07,
                                                         ),
                                                         Image.asset(
-                                                          items.Pictures[4],
+                                                          items.icons[4],
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ])
