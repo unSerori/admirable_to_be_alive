@@ -101,6 +101,16 @@ class items {
     'assets/images/icons/cat_6.png',
   ];
 
+    //icons
+  static List<String> dailyPicture = [
+    'assets/images/dailyPicture/cat_1.png',
+    'assets/images/dailyPicture/cat_2.png',
+    'assets/images/dailyPicture/cat_3.png',
+    'assets/images/dailyPicture/cat_4.png',
+    'assets/images/dailyPicture/cat_5.png',
+    'assets/images/dailyPicture/cat_6.png',
+  ];
+
   //今日のデイリーミッション
   static Map<String, dynamic> todayLists = {
     "id": [

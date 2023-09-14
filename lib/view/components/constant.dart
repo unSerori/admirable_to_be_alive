@@ -18,6 +18,7 @@ class Constant {
   static const Color blackGlay = Color.fromARGB(255, 124, 124, 124);
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF3E3E3E);
+  static const Color red = Color.fromARGB(255, 204, 24, 24);
 }
 
 class CustomText extends StatelessWidget {

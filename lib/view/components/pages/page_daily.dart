@@ -174,6 +174,9 @@ class PageDailyState extends State<PageDaily> {
 
                                             //100%になったら、、のイベント つまりスタンプの建設予定地
                                             if (Achievement == 100) {
+                                              items.userInfo['points']['now']['good'] += 10;
+                                              items.userInfo['points']['total']['good'] += 10;
+
                                               //7個スタンプが集まっていたらリセット
                                               if (items.userInfo['stamp']['now'][6]) {
                                                 items.userInfo['stamp']
@@ -188,6 +191,16 @@ class PageDailyState extends State<PageDaily> {
                                               for (int i = 0; i < items.userInfo['stamp']['now'].length; i++) {
                                                 if (!items.userInfo['stamp']['now'][i]) {
                                                   items.userInfo['stamp']['now'][i] = true;
+
+
+
+
+
+
+
+
+
+                                                  
                                                   break;
                                                 }
                                               }
@@ -298,7 +311,7 @@ class PageDailyState extends State<PageDaily> {
                                                             SizedBox(
                                                               width: _screenSizeWidth * 0.8,
                                                               child: Image.asset(
-                                                                nyariotPicture,
+                                                                items.dailyPicture[item["picture"]],
                                                                 fit: BoxFit.cover,
                                                               ),
                                                             )

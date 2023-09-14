@@ -333,35 +333,32 @@ class _PageShopState extends State<PageShop> {
                                                                 // えらいいねショップ
                                                                 if (shopIndex == 0) {
                                                                   // お金がたりない
-                                                                  if (items.userInfo['points']['now']['erai'] <
+                                                                  if (items.userInfo['points']['now']['erai'] >
                                                                       items.itemList_['shops'][shopIndex][index]
                                                                           ['itemPoint']) {
-                                                                    CustomText(
-                                                                        text: 'たりないよ！！', // 仮置き　ダイアログ建設予定
-                                                                        fontSize: 10,
-                                                                        color: Constant.black);
-                                                                  } else {
-                                                                    items.userInfo['points']['now']['erai'] -=
+                                                                            items.userInfo['points']['now']['erai'] -=
                                                                         items.itemList_['shops'][shopIndex][index]
                                                                             ['itemPoint']; // えらいいねポイントの消費
+                                                                    Navigator.of(context).pop(); //前の画面に戻る
                                                                   }
+                                                                    
+                                                    
+                                                                    
                                                                   // すごいいねショップ
                                                                 } else {
-                                                                  if (items.userInfo['points']['now']['good'] <
+                                                                  if (items.userInfo['points']['now']['good'] >
                                                                       items.itemList_['shops'][shopIndex][index]
                                                                           ['itemPoint']) {
-                                                                    CustomText(
-                                                                        text: 'たりないよ！！', //同様
-                                                                        fontSize: 10,
-                                                                        color: Constant.black);
-                                                                  } else {
-                                                                    items.userInfo['points']['now']['good'] -=
+
+                                                                             items.userInfo['points']['now']['good'] -=
                                                                         items.itemList_['shops'][shopIndex][index]
                                                                             ['itemPoint']; // すごいいねポイントの消費
-                                                                  }
+                                                                    Navigator.of(context).pop(); //前の画面に戻る
+                                                                    
+                                                                  } 
                                                                 }
                                                                 setState(() {}); // 画面の更新
-                                                                Navigator.of(context).pop(); //前の画面に戻る
+                                                                
                                                               },
                                                               child: Container(
                                                                   padding:
@@ -370,7 +367,9 @@ class _PageShopState extends State<PageShop> {
                                                                   height: _screenSizeHeight * 0.05,
                                                                   alignment: const Alignment(0.0, 0.0),
                                                                   decoration: BoxDecoration(
-                                                                      color: Constant.sub3,
+                                                                      color:items.userInfo['points']['now']['erai'] <
+                                                                      items.itemList_['shops'][shopIndex][index]
+                                                                          ['itemPoint'] ?Constant.red : Constant.sub3,
                                                                       borderRadius: BorderRadius.circular(10)), //角丸
                                                                   child: Row(children: [
                                                                     //消費されるむいむいまたはうさぎさんの画像
@@ -428,7 +427,8 @@ class _PageShopState extends State<PageShop> {
                                           borderRadius: BorderRadius.circular(10)), //角丸
                                       child: CustomText(
                                         color: reverseshopFontColor[shopIndex],
-                                        text: '${items.itemList_['shops'][shopIndex][index]['itemPoint']} 匹', // ポイントを文字列に変換
+                                        text:
+                                            '${items.itemList_['shops'][shopIndex][index]['itemPoint']} 匹', // ポイントを文字列に変換
                                         fontSize: _screenSizeHeight * 0.025,
                                       ),
                                     ),
