@@ -54,7 +54,9 @@ class _PageSetting extends State<PageSetting> {
               onTap: () {
                 
                 //ここに処理
-                
+                // 仮にここをユーザー情報POSTのボタンとする
+                //HttpToServer.httpReq("/send_userInfo", "POST", items.userInfo);
+                debugPrint(HttpToServer.httpReq("/post_userInfo", "POST", items.userInfo).toString());
 
                 
                 //ページ遷移
@@ -62,13 +64,16 @@ class _PageSetting extends State<PageSetting> {
                   context,
                   MaterialPageRoute(builder: (context) => settingAccaunt()),
                 ).then((value) {
-                  //戻ってきたら再描画
-                  setState(() {});
+                  //戻ってきたら再描画とサーバー通信
+                  setState(() {
+                    debugPrint(HttpToServer.httpReq("/post_userInfo", "POST", items.userInfo).toString());
+                    //仮建設
+                    // items.dataKeep = jsonEncode(HttpToServer.httpReq("/get_userInfo", "GET", {})) as List;
+                    // if (items.dataKeep[0]) {
+                    //   items.userInfo = items.dataKeep[1] as Map<String, dynamic>;
+                    // }
+                  });
                 });
-
-               
-
-
               },
               child: MainBox.MainBox2(
                   CustomText(
@@ -93,7 +98,9 @@ class _PageSetting extends State<PageSetting> {
                   MaterialPageRoute(builder: (context) => settingDaily()),
                 ).then((value) {
                   //戻ってきたら再描画
-                  setState(() {});
+                  setState(() {
+
+                  });
                 });
               },
               child: MainBox.MainBox2(

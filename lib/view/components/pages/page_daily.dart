@@ -1,9 +1,13 @@
 import 'dart:js_util';
+import 'dart:math';
 
 import 'package:admirable_to_be_alive_/main.dart';
 import 'package:flutter/material.dart';
 import '../constant.dart';
 import '../items.dart';
+import 'dart:math' as math;
+
+//import 'package:just_audio/just_audio.dart';
 
 class PageDaily extends StatefulWidget {
   const PageDaily({Key? key}) : super(key: key);
@@ -15,6 +19,18 @@ class PageDaily extends StatefulWidget {
 class PageDailyState extends State<PageDaily> {
   //ミッション達成率
   static double Achievement = 0;
+  String word = 'えらすぎ！';
+  String nyariotPicture = items.dailyPictures[0];
+  // ignore: recursive_getters
+  //final player = AudioPlayer();
+
+  //????????????????????????????????
+  void hoge() {
+    Random random = Random();
+    int randomNumber = random.nextInt(items.dailyPictures.length);
+    nyariotPicture = items.dailyPictures[randomNumber]; //ここにrandomをいれたい
+  }
+
   @override
   Widget build(BuildContext context) {
     var _screenSizeWidth = MediaQuery.of(context).size.width;
@@ -128,6 +144,12 @@ class PageDailyState extends State<PageDaily> {
                                   //ポイント獲得ボタン
                                   InkWell(
                                       onTap: () {
+                                        //乱数の生成
+                                        // var random = math.Random();
+                                        // random.nextInt(items.nyariot["daily"].length);
+                                        // word = items.nyariot["daily"][random];
+                                        hoge();
+
                                         if (!item['bool']) {
                                           item['bool'] = true;
                                           if (items.todayLists['id'] != null) {
@@ -152,12 +174,14 @@ class PageDailyState extends State<PageDaily> {
 
                                             //100%になったら、、のイベント つまりスタンプの建設予定地
                                             if (Achievement == 100) {
+                                              //7個スタンプが集まっていたらリセット
                                               if (items.userInfo['stamp']['now'][6]) {
                                                 items.userInfo['stamp']
                                                     ['now'] = [false, false, false, false, false, false, false];
                                                 items.userInfo['stamp']['totalStampCard'] += 1;
 
                                                 //おにゅーのかーどだよという主張をする建設予定地
+                                                //そんな時間はないかもしれない
                                               }
 
                                               //スタンプ押す場所の判定
@@ -167,6 +191,8 @@ class PageDailyState extends State<PageDaily> {
                                                   break;
                                                 }
                                               }
+
+                                              //ここにスタンプの演出
                                             }
                                           }
 
@@ -196,7 +222,7 @@ class PageDailyState extends State<PageDaily> {
 
                                                 child: Container(
                                                   width: double.infinity,
-                                                  height: _screenSizeHeight * 0.5,
+                                                  height: _screenSizeHeight * 0.55,
                                                   child: Stack(
                                                     alignment: AlignmentDirectional.center,
                                                     //重ねて表示
@@ -214,25 +240,69 @@ class PageDailyState extends State<PageDaily> {
                                                                 bottom: BorderSide(color: Constant.white, width: 10))),
                                                       ),
 
-                                                      // SizedBox(height: _screenSizeHeight * 0.05),
-                                                      // // ほめことば
-                                                      // CustomText(
-                                                      //   color: Constant.black,
-                                                      //   text: 'えらすぎ！',
-                                                      //   fontSize: _screenSizeHeight * 0.03,
-                                                      // ),
-                                                      // SizedBox(height: _screenSizeHeight * 0.1),
+                                                      SizedBox(height: _screenSizeHeight * 0.05),
+                                                      // ほめことば
+                                                      Align(
+                                                          alignment: Alignment.topRight,
+                                                          child: Row(children: [
+                                                            SizedBox(
+                                                              width: _screenSizeWidth * 0.475,
+                                                            ),
+                                                            Column(children: [
+                                                              SizedBox(
+                                                                height: _screenSizeHeight * 0.0175,
+                                                              ),
+                                                              Stack(children: [
+                                                                Container(
+                                                                  width: _screenSizeWidth * 0.45,
+                                                                  height: _screenSizeHeight * 0.15,
+                                                                  padding: EdgeInsets.all(_screenSizeHeight * 0.025),
+                                                                  //margin: EdgeInsets.all(10),
+                                                                  alignment: const Alignment(0.0, 0.0),
+                                                                  decoration: BoxDecoration(
+                                                                      borderRadius: BorderRadius.circular(40), //角丸
+                                                                      color: Constant.white),
+                                                                  child: CustomText(
+                                                                    color: Constant.blackGlay,
+                                                                    text: word,
+                                                                    fontSize: _screenSizeHeight * 0.03,
+                                                                  ),
+                                                                ),
+                                                                Column(children: [
+                                                                  SizedBox(
+                                                                    height: _screenSizeHeight * 0.1425,
+                                                                  ),
+                                                                  Row(children: [
+                                                                    SizedBox(
+                                                                      width: _screenSizeWidth * 0.25,
+                                                                    ),
+                                                                    SizedBox(
+                                                                      width: _screenSizeWidth * 0.1,
+                                                                      child: Image.asset(
+                                                                        items.Pictures[11],
+                                                                        fit: BoxFit.cover,
+                                                                      ),
+                                                                    )
+                                                                  ])
+                                                                ])
+                                                              ])
+                                                            ])
+                                                            //SizedBox(width: _screenSizeWidth*0.2),
+                                                          ])),
+                                                      //SizedBox(height: _screenSizeHeight * 0.1),
 
                                                       // ニャリオット表示
-                                                      Row(children: [
-                                                        SizedBox(
-                                                          width: _screenSizeWidth * 0.07,
-                                                        ),
-                                                        Image.asset(
-                                                          items.icons[4],
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ])
+                                                      Align(
+                                                          alignment: Alignment.centerRight,
+                                                          child: Row(children: [
+                                                            SizedBox(
+                                                              width: _screenSizeWidth * 0.8,
+                                                              child: Image.asset(
+                                                                nyariotPicture,
+                                                                fit: BoxFit.cover,
+                                                              ),
+                                                            )
+                                                          ]))
                                                     ],
                                                   ),
                                                 ),

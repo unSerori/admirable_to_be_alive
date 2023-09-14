@@ -7,7 +7,7 @@ class items {
   //ユーザー情報
   //ユーザー情報は即更新せなあかんくない？とおもうのででいりーーと分けているのだがどう思いますかときく
   static Map<String, dynamic> userInfo = {
-    'mail':"osakana@gmail.com",
+    'mail': "osakana@gmail.com",
     'name': "おさかな",
     'rank': 1,
     'points': {
@@ -54,6 +54,17 @@ class items {
     ]
   };
 
+  //ニャリオットのせりふ
+  static Map nyariot = {
+    "home": [
+      'えらすぎ！\n僕みたい!'
+          'まいにち大変だけど\n今日ものりきろうね'
+    ],
+    "daily": ['えらい！！！！！'],
+    "stamp": ['すごい！さすが${userInfo['name']}さん！'],
+    "newStampCard": ['七日間よくがんばったね\nはい! 新しいカードだよ']
+  };
+
   //画像のパス
   static List<String> Pictures = [
     'assets/images/usagi.png', //うさぎ 0
@@ -67,7 +78,18 @@ class items {
     'assets/images/goodCat.png', //スタンプカード用ねちこ 8
     'assets/images/fish.PNG', //おさかなさん 9
     'assets/images/wiyer.PNG', //ワイヤー 10
+    'assets/images/fukidashi.png' //ふきだし 11
   ];
+
+  static List<String> dailyPictures = [
+    'assets/images/ichiban.PNG', //いちばん 4
+    'assets/images/nyariot_0.PNG', //にばん
+  ];
+
+  static Map voice = {
+    "daily": [
+      "assetes/voice/erasugi.wav"
+  ]};
 
   //icons
   static List<String> icons = [
@@ -79,36 +101,37 @@ class items {
     'assets/images/icons/cat_6.png',
   ];
 
-  static List dailyPictures = [];
-
   //今日のデイリーミッション
   static Map<String, dynamic> todayLists = {
     "id": [
       {"things": 'あさごはんたべる', "point": 20, "bool": false, "picture": 0},
-      {"things": 'おうちでる', "point": 20, "bool": false, "picture": 0},
-      {"things": 'でんしゃのる', "point": 20, "bool": false, "picture": 0},
-      {"things": 'おひるごはんちょうたつ', "point": 20, "bool": false, "picture": 0},
-      {"things": 'じゅぎょうでねない', "point": 20, "bool": false, "picture": 0},
-      {"things": 'おうちかえる', "point": 20, "bool": false, "picture": 0},
+      {"things": 'おうちでる', "point": 50, "bool": false, "picture": 1},
+      {"things": 'でんしゃのる', "point": 20, "bool": false, "picture": 2},
+      {"things": 'おひるごはんちょうたつ', "point": 20, "bool": false, "picture": 3},
+      {"things": 'じゅぎょうでねない', "point": 30, "bool": false, "picture": 4},
+      {"things": 'おうちかえる', "point": 20, "bool": false, "picture": 5},
     ]
   };
 
+  //応急処置 技育までになおしたい所存
   static Map<String, dynamic> todayLists2 = {
     "id": [
       {"things": 'あさごはんたべる', "point": 20, "bool": false, "picture": 0},
-      {"things": 'おうちでる', "point": 20, "bool": false, "picture": 0},
-      {"things": 'でんしゃのる', "point": 20, "bool": false, "picture": 0},
-      {"things": 'おひるごはんちょうたつ', "point": 20, "bool": false, "picture": 0},
-      {"things": 'じゅぎょうでねない', "point": 20, "bool": false, "picture": 0},
-      {"things": 'おうちかえる', "point": 20, "bool": false, "picture": 0},
+      {"things": 'おうちでる', "point": 50, "bool": false, "picture": 1},
+      {"things": 'でんしゃのる', "point": 20, "bool": false, "picture": 2},
+      {"things": 'おひるごはんちょうたつ', "point": 20, "bool": false, "picture": 3},
+      {"things": 'じゅぎょうでねない', "point": 30, "bool": false, "picture": 4},
+      {"things": 'おうちかえる', "point": 20, "bool": false, "picture": 5},
     ]
   };
 
-  
   //明日のデイリーミッション
   static Map<String, dynamic> nextDayList = Map.of(todayLists2); //リストのコピー
   //編集中の保存用変数
   static String things = 'ニャリオットにやさしくする';
   static int points = 100;
   static int iconNumber = 0;
+
+  //返り値の一時保管場所
+  static var dataKeep = [];
 }

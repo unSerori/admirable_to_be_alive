@@ -50,6 +50,7 @@ class CustomText extends StatelessWidget {
 
 class iconPictures extends StatefulWidget {
   int picture;
+  
   iconPictures({
     Key? key,
     required this.picture,

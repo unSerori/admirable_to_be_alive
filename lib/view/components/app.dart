@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false, //デバッグの表示を消す
       home: MyStatefulWidget(), //ホーム画面を呼び出す
+      
     );
   }
 }
@@ -26,6 +27,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageHome(),
+      
     );
   }
 }

@@ -23,6 +23,14 @@ class _settingDaily extends State<settingDaily> {
     int points = 100;
     //int iconImageNumber = items.iconNumber;
 
+    //ここにおいとけば画面更新の度に通信してくれるんでない？と思っている。審議は如何に。
+    debugPrint(HttpToServer.httpReq("/get_dailyLists", "GET", {}).toString());
+    //仮建設
+    // items.dataKeep = jsonEncode(HttpToServer.httpReq("/get_dailyLists", "POST", {}) as List;
+    // if (items.dataKeep[0]) {
+    //   items.nextDayList = items.dataKeep[1] as Map<String, dynamic>;
+    // }
+
     return Scaffold(
         body: Center(
             child: Container(
@@ -230,6 +238,13 @@ class _settingDaily extends State<settingDaily> {
                                           };
                                           items.nextDayList["id"].add(newItem);
 
+
+                                          //データベース更新
+                                          //仮建設
+                                          debugPrint(HttpToServer.httpReq("/post_dailyList", "POST", items.nextDayList)
+                                              .toString());
+                                          HttpToServer.httpReq("/post_dailyList", "POST", items.nextDayList).toString();
+
                                           setState(() {}); // 画面の更新
                                           Navigator.of(context).pop(); //もどる
                                         },
@@ -284,6 +299,8 @@ class _settingDaily extends State<settingDaily> {
                         //['id']の中の要素数の取得
                         int index =
                             (items.nextDayList['id'] as List<Map<String, dynamic>>?)?.indexOf(item) ?? -1; //null除外
+                        String things_ = items.nextDayList["id"][index]["things"];
+                        int point_ = items.nextDayList["id"][index]["point"];
 
                         //ここから表示部分
                         return ListTile(
@@ -395,7 +412,7 @@ class _settingDaily extends State<settingDaily> {
                                                 hintStyle: TextStyle(fontSize: 12),
                                               ),
                                               onChanged: (text) {
-                                                points = int.parse(text);
+                                                point_ = int.parse(text);
                                               },
                                             ),
                                           ),
@@ -427,7 +444,7 @@ class _settingDaily extends State<settingDaily> {
                                                     hintStyle: TextStyle(fontSize: 12),
                                                   ),
                                                   onChanged: (text) {
-                                                    things = text;
+                                                    things_ = text;
                                                   },
                                                 ),
                                               )
@@ -443,14 +460,23 @@ class _settingDaily extends State<settingDaily> {
                                                 InkWell(
                                                     onTap: () {
                                                       var newItem = {
-                                                        "things": things,
-                                                        "point": points,
+                                                        "things": things_,
+                                                        "point": point_,
                                                         "bool": false,
                                                         "picture": items.iconNumber,
                                                       };
                                                       items.nextDayList["id"][index] = newItem;
 
-                                                      setState(() {}); // 画面の更新
+                                                      setState(() {
+                                                        //データベース更新
+                                                        //仮建設
+                                                        debugPrint(HttpToServer.httpReq(
+                                                                "/post_dailyList", "POST", items.nextDayList)
+                                                            .toString());
+                                                        HttpToServer.httpReq(
+                                                                "/post_dailyList", "POST", items.nextDayList)
+                                                            .toString();
+                                                      }); // 画面の更新
                                                       Navigator.of(context).pop(); //もどる
                                                     },
                                                     child: Container(
@@ -468,11 +494,20 @@ class _settingDaily extends State<settingDaily> {
 
                                                 SizedBox(width: _screenSizeWidth * 0.025),
 
-                                                //やめるボタン
+                                                //削除ボタン
                                                 InkWell(
                                                     onTap: () {
                                                       items.nextDayList["id"].removeAt(index);
-                                                      setState(() {});
+                                                      setState(() {
+                                                        //データベース更新
+                                                        //仮建設
+                                                        debugPrint(HttpToServer.httpReq(
+                                                                "/post_dailyList", "POST", items.nextDayList)
+                                                            .toString());
+                                                        HttpToServer.httpReq(
+                                                                "/post_dailyList", "POST", items.nextDayList)
+                                                            .toString();
+                                                      });
                                                       Navigator.of(context).pop(); //もどる
                                                     },
                                                     child: Container(

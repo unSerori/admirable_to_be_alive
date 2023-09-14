@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../constant.dart';
 import '../items.dart';
 import 'page_shop.dart';
+import 'dart:convert';
+import 'dart:math' as math;
 
 import 'page_daily.dart';
 import 'page_setting.dart';
@@ -20,7 +22,6 @@ class _PageHomeState extends State<PageHome> {
   //好感度ランク
   static int rank = 0;
 
-  
   //次の予定
   //変更予定
   static int nextToDoh = 13;
@@ -35,6 +36,18 @@ class _PageHomeState extends State<PageHome> {
     //画面サイズ
     var _screenSizeWidth = MediaQuery.of(context).size.width;
     var _screenSizeHeight = MediaQuery.of(context).size.height;
+
+    //読み込んだらget
+    //いやまて　このタイミングでpostしたら毎回初期値に戻されてしまうぞ
+    //HttpToServer.httpReq("/send_userInfo", "POST", items.userInfo);
+    debugPrint(HttpToServer.httpReq("/get_userInfo", "GET", {}).toString());
+    debugPrint(HttpToServer.httpReq("/get_userInfo", "GET", {}).toString());
+
+    //仮建設
+    // items.dataKeep = jsonEncode(HttpToServer.httpReq("/get_userInfo", "GET", {})) as List;
+    // if (items.dataKeep[0]) {
+    //   items.userInfo = items.dataKeep[1] as Map<String, dynamic>;
+    // }
 
     return Scaffold(
       body: Center(
@@ -117,8 +130,10 @@ class _PageHomeState extends State<PageHome> {
                             Container(
                               width: _screenSizeWidth * 0.15,
                               padding: EdgeInsets.only(top: _screenSizeWidth * 0.01),
-                              child:
-                                  CustomText(color: Constant.black, text: '${items.userInfo['points']['now']['erai']}P', fontSize: _screenSizeWidth * 0.05),
+                              child: CustomText(
+                                  color: Constant.black,
+                                  text: '${items.userInfo['points']['now']['erai']}P',
+                                  fontSize: _screenSizeWidth * 0.05),
                             ),
 
                             //すごいいね
@@ -134,8 +149,10 @@ class _PageHomeState extends State<PageHome> {
                             Container(
                               width: _screenSizeWidth * 0.15,
                               padding: EdgeInsets.only(top: _screenSizeWidth * 0.01),
-                              child:
-                                  CustomText(color: Constant.black, text: '${items.userInfo['points']['now']['good']}P', fontSize: _screenSizeWidth * 0.05),
+                              child: CustomText(
+                                  color: Constant.black,
+                                  text: '${items.userInfo['points']['now']['good']}P',
+                                  fontSize: _screenSizeWidth * 0.05),
                             ),
                           ],
                         )
@@ -268,13 +285,22 @@ class _PageHomeState extends State<PageHome> {
                         width: _screenSizeWidth * 0.05,
                       ),
                       //画像
-                      SizedBox(
-                        height: _screenSizeWidth * 0.8,
-                        child: Image.asset(
-                          items.Pictures[2],
-                          fit: BoxFit.cover,
+                      InkWell(
+                        onTap: () {
+                          //乱数の生成
+                          var random = math.Random();
+                          random.nextInt(items.nyariot["home"].length);
+                          word = items.nyariot["home"][random];
+                          setState(() {});
+                        },
+                        child: SizedBox(
+                          height: _screenSizeWidth * 0.8,
+                          child: Image.asset(
+                            items.Pictures[2],
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
+                      )
                     ],
                   )
                 ],
