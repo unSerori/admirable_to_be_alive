@@ -7,9 +7,9 @@ class items {
   //ユーザー情報
   //ユーザー情報は即更新せなあかんくない？とおもうのででいりーーと分けているのだがどう思いますかときく
   static Map<String, dynamic> userInfo = {
-    'mail':"osakana@gmail.com",
-    'name': "おさかな",
-    'rank': 1,
+    'mail':"untiru@gmail.com",
+    'name': "untiru",
+    'rank': 100,
     'points': {
       'now': {
         'erai': 0,

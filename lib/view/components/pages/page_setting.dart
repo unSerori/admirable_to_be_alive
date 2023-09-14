@@ -135,6 +135,62 @@ class _PageSetting extends State<PageSetting> {
                   0.1),
             ),
 
+            //リクエストてすと
+            InkWell(
+              onTap: () {
+                
+                //ここに処理
+                
+
+                HttpToServer.httpReq("/post_userInfo", "POST", items.userInfo);
+
+               
+
+
+              },
+              child: MainBox.MainBox2(
+                  CustomText(
+                    text: 'post_userInfo',
+                    fontSize: _screenSizeWidth * 0.04,
+                    color: Constant.white,
+                  ),
+                  bordColor: Constant.sub1,
+                  _screenSizeWidth,
+                  _screenSizeHeight,
+                  0.9,
+                  0.1),
+            ),
+            //リクエストてすと
+            InkWell(
+              onTap: () {
+                
+                //ここに処理
+                
+
+                HttpToServer.httpReq(
+                  "/result",
+                  "POST", 
+                  items.userInfo,
+                );
+
+               
+
+
+              },
+              child: MainBox.MainBox2(
+                  CustomText(
+                    text: 'result',
+                    fontSize: _screenSizeWidth * 0.04,
+                    color: Constant.white,
+                  ),
+                  bordColor: Constant.sub1,
+                  _screenSizeWidth,
+                  _screenSizeHeight,
+                  0.9,
+                  0.1),
+            ),
+
+
             SizedBox(
               height: _screenSizeHeight * 0.13,
             ),
