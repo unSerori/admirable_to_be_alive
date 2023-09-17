@@ -260,7 +260,7 @@ class _HorizontalScrollingBackgroundState extends State<HorizontalScrollingBackg
 class HttpToServer {  // HttpLib
   // インスタンス変数
   // URLとかポートとかプロトコルとか
-  static const String serverIP = "127.0.0.1";  // "127.0.0.1""10.200.0.82""tidalhip.local""10.200.0.115"10.25.10.10710.200.0.163
+  static const String serverIP = "10.200.0.185";  // "127.0.0.1""10.200.0.82""tidalhip.local""10.200.0.115"10.25.10.10710.200.0.163
   static const String server_port = "5000";
   static const String protocol = "http";
   static baseUrl() {  // 鯖のURLを設定

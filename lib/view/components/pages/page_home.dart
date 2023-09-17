@@ -40,6 +40,7 @@ class _PageHomeState extends State<PageHome> {
     //読み込んだらget
     //いやまて　このタイミングでpostしたら毎回初期値に戻されてしまうぞ
     //HttpToServer.httpReq("/send_userInfo", "POST", items.userInfo);
+    debugPrint(HttpToServer.httpReq("/get_userInfo", "POST", items.userInfo).toString());
     debugPrint(HttpToServer.httpReq("/get_userInfo", "GET", {}).toString());
     debugPrint(HttpToServer.httpReq("/get_userInfo", "GET", {}).toString());
 

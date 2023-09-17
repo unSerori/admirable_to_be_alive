@@ -148,70 +148,55 @@ class PageDailyState extends State<PageDaily> {
                                         // var random = math.Random();
                                         // random.nextInt(items.nyariot["daily"].length);
                                         // word = items.nyariot["daily"][random];
-                                        hoge();
 
                                         if (!item['bool']) {
-                                          item['bool'] = true;
-                                          if (items.todayLists['id'] != null) {
-                                            var missionList = items.todayLists['id'] as List<Map<String, dynamic>>;
 
-                                            if (missionList.length > index) {
-                                              missionList[index]['bool'] = true;
-                                              setState(() {});
+                                          //ミッション状況の書き換え
+                                          item['bool'] = true;                                          
+                                          setState(() {});
+
+                                          //達成率の計算
+                                          int count = 0;
+                                          for (int i = 0; i < items.todayLists["id"].length; i++) {
+                                            if (items.todayLists["id"][i]["bool"]) {
+                                              count++;
+                                            }
+                                          }
+                                          Achievement = count / items.todayLists["id"].length * 100;
+
+                                          // 100%になったら、、のイベント つまりスタンプの建設予定地
+                                          if (Achievement >= 100) {
+                                            //すごいいねポイントの獲得
+                                            items.userInfo['points']['now']['good'] += 10;
+                                            items.userInfo['points']['total']['totemogood'] += 10;
+
+                                             
+                                            //7個スタンプが集まっていたらリセット
+                                            if (items.userInfo['stamp']['now'][6]) {
+                                              //保存しているユーザー情報のスタンプカードの進捗率をリセット
+                                              items.userInfo['stamp']
+                                                  ['now'] = [false, false, false, false, false, false, false];
+                                              items.userInfo['stamp']['totalStampCard'] += 1;
+
+                                              //おにゅーのかーどだよという主張をする建設予定地
+                                              //そんな時間はないかもしれない
+                                            }
+
+                                           
+
+                                            //スタンプ押す場所の判定
+                                            for (int i = 0; i < items.userInfo['stamp']['now'].length; i++) {
+                                              //進捗率でtrueじゃなかったら
+                                              if (!items.userInfo['stamp']['now'][i]) {
+                                                items.userInfo['stamp']['now'][i] = true;
+                                                break;
+                                              }
                                             }
                                           }
 
-                                          //達成率
-                                          if (items.todayLists['id'] is List<Map<String, dynamic>>) {
-                                            //リスト取得
-                                            List<Map<String, dynamic>> itemList = items.todayLists['id'];
-                                            int totalItems = itemList.length;
-                                            int trueItems = itemList.where((item) => item['bool'] == true).length; //判定
+                                          //ここにスタンプの演出
 
-                                            if (totalItems > 0) {
-                                              Achievement = (trueItems / totalItems) * 100.0; //用意している管理用の変数に代入
-                                            }
-
-                                            //100%になったら、、のイベント つまりスタンプの建設予定地
-                                            if (Achievement == 100) {
-                                              items.userInfo['points']['now']['good'] += 10;
-                                              items.userInfo['points']['total']['good'] += 10;
-
-                                              //7個スタンプが集まっていたらリセット
-                                              if (items.userInfo['stamp']['now'][6]) {
-                                                items.userInfo['stamp']
-                                                    ['now'] = [false, false, false, false, false, false, false];
-                                                items.userInfo['stamp']['totalStampCard'] += 1;
-
-                                                //おにゅーのかーどだよという主張をする建設予定地
-                                                //そんな時間はないかもしれない
-                                              }
-
-                                              //スタンプ押す場所の判定
-                                              for (int i = 0; i < items.userInfo['stamp']['now'].length; i++) {
-                                                if (!items.userInfo['stamp']['now'][i]) {
-                                                  items.userInfo['stamp']['now'][i] = true;
-
-
-
-
-
-
-
-
-
-                                                  
-                                                  break;
-                                                }
-                                              }
-
-                                              //ここにスタンプの演出
-                                            }
-                                          }
-
-                                          //ぷるぷるぷるりくえすと
-
-                                          //ポイントの獲得
+                                          //えらいいねポイントの獲得
                                           items.userInfo['points']['now']['erai'] += item['point'];
                                           items.userInfo['points']['total']['totemoerai'] += item['point'];
 
@@ -289,6 +274,8 @@ class PageDailyState extends State<PageDaily> {
                                                                     SizedBox(
                                                                       width: _screenSizeWidth * 0.25,
                                                                     ),
+
+                                                                    //ふきだし
                                                                     SizedBox(
                                                                       width: _screenSizeWidth * 0.1,
                                                                       child: Image.asset(
@@ -300,9 +287,7 @@ class PageDailyState extends State<PageDaily> {
                                                                 ])
                                                               ])
                                                             ])
-                                                            //SizedBox(width: _screenSizeWidth*0.2),
                                                           ])),
-                                                      //SizedBox(height: _screenSizeHeight * 0.1),
 
                                                       // ニャリオット表示
                                                       Align(
@@ -339,7 +324,7 @@ class PageDailyState extends State<PageDaily> {
                                             Container(
                                               width: _screenSizeWidth * 0.07,
                                               height: _screenSizeHeight * 0.07,
-                                              child: Image.asset(items.money[0]), //建設予定地
+                                              child: Image.asset(items.money[0]),
                                             ),
                                             SizedBox(width: _screenSizeWidth * 0.025),
 
